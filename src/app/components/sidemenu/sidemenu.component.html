@@ -2,10 +2,11 @@
 
   <ul class="gallery-menu">
     <li *ngFor="let item of galleryMenuItems">
-      <a href="#">{{item.title}}</a>
+      <a href="javascript.void(0)">{{item.title}}</a>
       <ul *ngIf="item.children">
         <li *ngFor="let child of item.children">
-          <a href="#">
+          <a [routerLink]="['/gallery', { parent: item.sref, contentId: child.id}]">
+          <!-- <a (click)="navigateToGallery(item, child)"> -->
             {{child.titlePt}}<br>
             {{child.titleEn}}
           </a>
@@ -15,9 +16,17 @@
   </ul>
 
   <ul class="navigation-menu">
-    <li>Home</li>
-    <li>Gallery</li>
-    <li>Contact</li>
-    <li>About Me</li>
+    <li>
+      <a routerLink="/">Home</a>
+    </li>
+    <li>
+      <a [routerLink]="['/gallery']">Gallery</a>
+    </li>
+    <li>
+      <a href="">Contact</a>
+    </li>
+    <li>
+      <a href="">About Me</a>
+    </li>
   </ul>
 </nav>

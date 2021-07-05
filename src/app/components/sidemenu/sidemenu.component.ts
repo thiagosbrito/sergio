@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuService } from '../../services/menu.service';
 
 interface GalleryMenuItem {
@@ -27,11 +28,15 @@ export class SidemenuComponent implements OnInit {
   // SÉRIE QUADROS INCOMPLETOS
   // SERIES INCOMPLETE PAINTINGS
 
-  constructor(private menuSerivce$: MenuService) { }
+  constructor(private menuSerivce$: MenuService, private router: Router,) { }
 
   ngOnInit(): void {
     this.getMenuItems();
   }
+
+  // public navigateToGallery({sref}: any, child: any) {
+  //   this.router.navigate(['/gallery'], {data: {parent: sref, child: child}});
+  // }
 
   private getMenuItems() {
     this.menuSerivce$.getGalleryMenuItems().subscribe(({ menuItems }) => {

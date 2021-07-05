@@ -1,13 +1,29 @@
 main.main-container {
-  background-color: #000;
   display: flex;
   width: 100vw;
   height: 100vh;
   position: relative;
+  z-index: 1;
 
   h1 {
     color: #FFF;
     text-align: center;
     width: 100%;
   }
+}
+
+.content-wrapper {
+  flex: 1;
+  height: 100%;
+}
+
+.dynamic-background {
+  width: 100vw;
+  height: 100vh;
+  background: url('http://sergiorighini.com/2016/img/banners/217fe74d1d8eca02876d23ddfc7720a5.jpg');
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }

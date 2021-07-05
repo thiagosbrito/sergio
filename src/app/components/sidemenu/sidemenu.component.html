@@ -1,0 +1,23 @@
+<nav class="sidemenu">
+
+  <ul class="gallery-menu">
+    <li *ngFor="let item of galleryMenuItems">
+      <a href="#">{{item.title}}</a>
+      <ul *ngIf="item.children">
+        <li *ngFor="let child of item.children">
+          <a href="#">
+            {{child.titlePt}}<br>
+            {{child.titleEn}}
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul class="navigation-menu">
+    <li>Home</li>
+    <li>Gallery</li>
+    <li>Contact</li>
+    <li>About Me</li>
+  </ul>
+</nav>

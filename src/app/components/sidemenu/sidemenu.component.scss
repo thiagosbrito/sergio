@@ -1,0 +1,32 @@
+nav.sidemenu {
+  width: 250px;
+  background-color: #eeee;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  ul.gallery-menu {
+    width: 100%;
+    height: auto;
+  }
+
+  ul.navigation-menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-top: auto;
+    width: 100%;
+
+    li {
+      padding: 12px 16px;
+
+      // a {
+
+      // }
+
+      &:hover {
+        background-color: yellow;
+      }
+    }
+  }
+}

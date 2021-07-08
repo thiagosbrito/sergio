@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { MenuParentItem } from 'src/app/interfaces/menu.interfaces';
 import { MenuService } from '../../services/menu.service';
-
+import { MenuState, selectMenuItems } from './store';
+import * as fromMenu from './store/menu-items.actions';
 interface GalleryMenuItem {
   title: string;
   link: string;
@@ -21,28 +26,21 @@ interface ChildGalleryMenuItem {
 })
 export class SidemenuComponent implements OnInit {
 
-  public galleryMenuItems: any[] = [];
+  public galleryMenuItems: MenuParentItem[] = [];
 
-  // FROM 1998 TO 2003
+  public menuItems: MenuParentItem[] = [];
 
-  // SÉRIE QUADROS INCOMPLETOS
-  // SERIES INCOMPLETE PAINTINGS
+  public menuItems$: Observable<MenuParentItem[]> | undefined;
 
-  constructor(private menuSerivce$: MenuService, private router: Router,) { }
+  constructor(private menuSerivce$: MenuService, private router: Router, private store: Store<MenuState>) { }
 
   ngOnInit(): void {
-    this.getMenuItems();
+    this.store.dispatch(fromMenu.loadMenuItems());
+    this.loadMenuItems();
   }
 
-  // public navigateToGallery({sref}: any, child: any) {
-  //   this.router.navigate(['/gallery'], {data: {parent: sref, child: child}});
-  // }
-
-  private getMenuItems() {
-    this.menuSerivce$.getGalleryMenuItems().subscribe(({ menuItems }) => {
-      this.galleryMenuItems = menuItems;
-      console.log(this.galleryMenuItems);
-    })
+  loadMenuItems() {
+    this.menuItems$ = this.store.pipe(select(selectMenuItems));
   }
 
 }

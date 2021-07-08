@@ -1,12 +1,12 @@
 <nav class="sidemenu">
 
   <ul class="gallery-menu">
-    <li *ngFor="let item of galleryMenuItems">
+    <li *ngFor="let item of menuItems$ | async">
       <a href="javascript.void(0)">{{item.title}}</a>
       <ul *ngIf="item.children">
         <li *ngFor="let child of item.children">
           <a [routerLink]="['/gallery', { parent: item.sref, contentId: child.id}]">
-          <!-- <a (click)="navigateToGallery(item, child)"> -->
+
             {{child.titlePt}}<br>
             {{child.titleEn}}
           </a>

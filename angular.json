@@ -107,5 +107,8 @@
       }
     }
   },
-  "defaultProject": "sergiorighini"
+  "defaultProject": "sergiorighini",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

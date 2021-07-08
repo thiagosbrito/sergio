@@ -1,3 +1,6 @@
-<div *ngFor="let thumb of galleryImages">
-  <img [src]="mountImageUrl(thumb)" alt="" />
-</div>
+<section class="gallery">
+  <div class="thumbs-wrapper">
+    <div *ngFor="let thumb of galleryImages" class="thumb" [style.background-image]="'url(' + mountImageUrl(thumb) + ')'"></div>
+
+  </div>
+</section>

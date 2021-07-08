@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GalleryService } from 'src/app/services/gallery.service';
-import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-
-interface IGalleryResponse {
-  images: any[],
-  pages: number;
-  total_images: number;
-}
+import { IGalleryImage, IGalleryResponse } from '../../interfaces/gallery.interface';
 
 @Component({
   selector: 'app-gallery',
@@ -17,7 +10,7 @@ interface IGalleryResponse {
 })
 export class GalleryComponent implements OnInit {
 
-  galleryImages: any[] = [];
+  galleryImages: IGalleryImage[] = [];
   parentType: string = '';
   currentPage: string = '1';
   contentId: string = '1';
@@ -27,7 +20,6 @@ export class GalleryComponent implements OnInit {
   ngOnInit(): void {
     this.galleryService.getGalleryImages('paintings', '1', '1').subscribe((results: IGalleryResponse) => {
       this.galleryImages = results.images;
-      console.log(results);
     });
 
     this.route.paramMap.subscribe((params) => {
@@ -35,11 +27,6 @@ export class GalleryComponent implements OnInit {
       this.contentId = params.get('contentId') as string;
       this.currentPage = '1';
     });
-    // this.route.paramMap.pipe(
-    //   switchMap(params => {
-    //     return this.getGalleryThumbs(this.parentType, this.contentId);
-    //   })
-    // );
   }
 
   getGalleryThumbs(parent: string, contentId: string) {

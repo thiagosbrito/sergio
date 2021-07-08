@@ -12,16 +12,28 @@ main.main-container {
   }
 }
 
+.menu-wrapper {
+  min-width: 252px;
+  width: 252px;
+  background-color: yellow;
+}
+
 .content-wrapper {
   flex: 1;
+  max-width: calc(100vw - 252px);
   height: 100%;
+
+  .copyright {
+    margin-left: auto;
+  }
 }
 
 .dynamic-background {
   width: 100vw;
   height: 100vh;
-  background: url('http://sergiorighini.com/2016/img/banners/217fe74d1d8eca02876d23ddfc7720a5.jpg');
-  background-size: cover;
+  background-color: #000;
+  // background: url('http://sergiorighini.com/2016/img/banners/217fe74d1d8eca02876d23ddfc7720a5.jpg');
+  // background-size: cover;
   position: absolute;
   top: 0;
   left: 0;

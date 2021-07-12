@@ -19,7 +19,10 @@ import { MenuEffects } from './sidemenu/store/menu.effects';
     CommonModule,
     RouterModule,
     ServicesModule,
-    StoreModule.forFeature(fromMenuState.menuStateFeatureKey, fromMenuState.reducers, { metaReducers: fromMenuState.metaReducers }),
+    StoreModule.forFeature(
+      fromMenuState.menuStateFeatureKey,
+      fromMenuState.reducers,
+    ),
     EffectsModule.forFeature([MenuEffects])
   ]
 })

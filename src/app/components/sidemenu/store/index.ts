@@ -1,6 +1,4 @@
 import {
-  ActionReducer,
-  ActionReducerMap,
   createFeatureSelector,
   createReducer,
   createSelector,
@@ -25,7 +23,7 @@ export const initialState: MenuState = {
 
 export const reducers = createReducer(
   initialState,
-  on(loadMenuItemsSuccess, (state: MenuState, action: any) => ({...state, ...action.menuItems})),
+  on(loadMenuItemsSuccess, (state: MenuState, action: any) => ({...state, menuItems: action.menuItems})),
   on(loadMenuItemsFailure, (state: MenuState, action: any) => ({...state, error: action.error}))
 )
 

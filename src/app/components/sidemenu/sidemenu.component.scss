@@ -13,8 +13,14 @@ nav.sidemenu {
     margin: 0;
     padding:0;
     > li {
+      a {
+        cursor: pointer;
+      }
       ul {
         list-style: none;
+        > li > a {
+          cursor: pointer;
+        }
       }
     }
   }

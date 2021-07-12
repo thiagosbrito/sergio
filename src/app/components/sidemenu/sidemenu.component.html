@@ -5,8 +5,7 @@
       <a href="javascript.void(0)">{{item.title}}</a>
       <ul *ngIf="item.children">
         <li *ngFor="let child of item.children">
-          <a [routerLink]="['/gallery', { parent: item.sref, contentId: child.id}]">
-
+          <a (click)="navigateToGalleryItem(item.sref, child.id, child.tipo_thumb)">
             {{child.titlePt}}<br>
             {{child.titleEn}}
           </a>

@@ -43,4 +43,7 @@ export class SidemenuComponent implements OnInit {
     this.menuItems$ = this.store.pipe(select(selectMenuItems));
   }
 
+  navigateToGalleryItem(parentId: string, childId: string, thumbType: string): void {
+    this.router.navigate(['gallery/' + parentId + '/' + childId + '/' + thumbType]);
+  }
 }

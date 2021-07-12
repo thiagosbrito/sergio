@@ -4,7 +4,7 @@ import { GalleryComponent } from './gallery/gallery.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':galleryId/:childId/:thumbType',
     component: GalleryComponent
   },
 ];

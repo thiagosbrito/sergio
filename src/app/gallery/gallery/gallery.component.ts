@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { GalleryService } from 'src/app/services/gallery.service';
 import { IGalleryImage, IGalleryResponse } from '../../interfaces/gallery.interface';
-
+import * as fromGallery from '../store/gallery.actions';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
@@ -15,25 +16,25 @@ export class GalleryComponent implements OnInit {
   currentPage: string = '1';
   contentId: string = '1';
 
-  constructor(private galleryService: GalleryService, private route: ActivatedRoute, private router: Router) { }
+  parentId: string;
+  childId: string;
+  thumbType: string;
 
-  ngOnInit(): void {
-    this.galleryService.getGalleryImages('paintings', '1', '1').subscribe((results: IGalleryResponse) => {
-      this.galleryImages = results.images;
-    });
-
-    this.route.paramMap.subscribe((params) => {
-      this.parentType = params.get('parent') as string;
-      this.contentId = params.get('contentId') as string;
-      this.currentPage = '1';
-    });
+  constructor(
+    private route: ActivatedRoute,
+    private store: Store
+  ) {
+    this.parentId = this.route.snapshot.params.galleryId;
+    this.childId = this.route.snapshot.params.childId;
+    this.thumbType = this.route.snapshot.params.thumbType;
   }
 
-  getGalleryThumbs(parent: string, contentId: string) {
-    this.galleryService.getGalleryImages(parent, contentId, '1').subscribe(results => {
-      console.log(results);
-    });
-    return this.galleryService.getGalleryImages(parent, contentId, '1');
+  ngOnInit(): void {
+    this.store.dispatch(fromGallery.loadGallery({
+      parentId: this.parentId,
+      childId: this.childId,
+      thumbType: this.thumbType
+    }));
   }
 
   mountImageUrl(thumb: any): string {

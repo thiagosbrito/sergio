@@ -13,7 +13,7 @@ export class MenuEffects {
       ofType('[MenuItems] Load MenuItems'),
       mergeMap(() =>
         this.menuService.getGalleryMenuItems().pipe(
-          map(({ menuItems}) => fromMenuActions.loadMenuItemsSuccess({menuItems})),
+          map(({menuItems}) => fromMenuActions.loadMenuItemsSuccess({ menuItems })),
           catchError(error => of(fromMenuActions.loadMenuItemsFailure({error})))
         )
       )

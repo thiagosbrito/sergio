@@ -1,7 +1,10 @@
-<!-- <section class="gallery">
+<section class="gallery">
   <div class="thumbs-wrapper">
-    <div *ngFor="let thumb of galleryImages" class="thumb" [style.background-image]="'url(' + mountImageUrl(thumb) + ')'"></div>
-
+    <div
+      *ngFor="let thumb of galleryImages$ | async;"
+      class="thumb"
+      [ngClass]="thumbType === '1' ? 'large' : 'medium'"
+      [style.background-image]="'url(' + mountImageUrl(thumb) + ')'">
+    </div>
   </div>
-</section> -->
-<p>GALLERY WORKS</p>
+</section>

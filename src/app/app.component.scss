@@ -1,3 +1,5 @@
+@import './styles/media';
+
 main.main-container {
   display: flex;
   width: 100vw;
@@ -15,13 +17,28 @@ main.main-container {
 .menu-wrapper {
   min-width: 252px;
   width: 252px;
-  background-color: yellow;
+
+  @media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    display: none;
+  }
+
 }
 
 .content-wrapper {
   flex: 1;
   max-width: calc(100vw - 252px);
   height: 100%;
+
+  @media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 100vw;
+    max-width: 100%;
+  }
 
   .copyright {
     margin-left: auto;

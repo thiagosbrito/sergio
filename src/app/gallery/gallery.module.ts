@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromGallery from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { GalleryEffects } from './store/gallery.effects';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { GalleryEffects } from './store/gallery.effects';
       fromGallery.galleryStateFeatureKey,
       fromGallery.galleryReducers
     ),
-    EffectsModule.forFeature([GalleryEffects])
+    EffectsModule.forFeature([GalleryEffects]),
+    ComponentsModule
   ]
 })
 export class GalleryModule { }

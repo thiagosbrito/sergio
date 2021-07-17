@@ -7,13 +7,16 @@ import { StoreModule } from '@ngrx/store';
 import * as fromMenuState from './sidemenu/store';
 import { EffectsModule } from '@ngrx/effects';
 import { MenuEffects } from './sidemenu/store/menu.effects';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
-    SidemenuComponent
+    SidemenuComponent,
+    LoaderComponent
   ],
   exports: [
-    SidemenuComponent
+    SidemenuComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,

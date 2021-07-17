@@ -1,3 +1,8 @@
+$spinner-color: rgba(255, 255, 255, .65);
+$spinner-size: 60px;
+
+@import "~scss-spinners/spinners";
+
 section.gallery {
   width: 100%;
   display: flex;
@@ -13,6 +18,9 @@ section.gallery {
       background-position: top center;
       background-size: cover;
       margin: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &.large {
         width: 468px;
@@ -22,6 +30,16 @@ section.gallery {
       &.medium {
         width: 300px;
         height: 300px;
+      }
+
+
+      .spinner {
+        opacity: 1;
+        will-change: opacity;
+
+        &.hidden {
+          opacity: 0;
+        }
       }
     }
   }

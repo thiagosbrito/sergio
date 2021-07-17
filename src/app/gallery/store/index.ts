@@ -12,11 +12,14 @@ export const galleryStateFeatureKey = 'galleryState';
 
 export interface GalleryState {
   selectedItem: {
+    pages: number | undefined
+    total_images: number | undefined;
+    images: any[] | undefined;
     activeItem: string | undefined;
     childId?: string | undefined;
     thumbType: string | undefined;
-  } | undefined,
-  error: any;
+  },
+  error?: any;
 }
 
 export interface GalleryItem {
@@ -28,7 +31,14 @@ export interface GalleryItem {
 }
 
 export const galleryInitialState: GalleryState = {
-  selectedItem: undefined,
+  selectedItem: {
+    pages: undefined,
+    total_images: undefined,
+    images:  undefined,
+    activeItem: undefined,
+    childId: undefined,
+    thumbType: undefined
+  },
   error: undefined
 }
 
@@ -44,7 +54,12 @@ export const selectGalleryFeature = createFeatureSelector<GalleryState>(
 
 export const selectGalleryItem = createSelector(
   selectGalleryFeature,
-  (state: GalleryState) => state
+  (state: GalleryState) => state.selectedItem
+)
+
+export const imagesFromSelectedItem = createSelector(
+  selectGalleryFeature,
+  ({ selectedItem }) => selectedItem.images
 )
 
 export const metaReducers: MetaReducer<GalleryState>[] = !environment.production ? [] : [];

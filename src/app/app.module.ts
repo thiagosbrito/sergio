@@ -9,7 +9,9 @@ import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxUiLoaderModule } from "ngx-ui-loader";
+import { LoaderConfig } from './constants/loader.constant';
 @NgModule({
   declarations: [
     AppComponent
@@ -18,10 +20,12 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserModule,
     AppRoutingModule,
     ComponentsModule,
+    BrowserAnimationsModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    NgxUiLoaderModule.forRoot(LoaderConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

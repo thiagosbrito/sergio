@@ -16,3 +16,13 @@ export interface IGalleryImage {
   texto_link: string;
   tipo_ampliacao: number;
 }
+
+export interface IBannersResponse {
+  banners: IBanner[]
+}
+
+export interface IBanner {
+  id: number,
+  title: string;
+  titulo: string;
+}

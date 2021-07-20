@@ -14,3 +14,8 @@ export const loadMenuItemsFailure = createAction(
   '[MenuItems Effect] Load MenuItems Failure',
   props<{ error: any }>()
 );
+
+export const selectMenuItem = createAction(
+  '[MenuItems Select Item] - Select item',
+  props<{ parentId: string, childId: string, thumbType: string}>()
+)

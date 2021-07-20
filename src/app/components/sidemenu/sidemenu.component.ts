@@ -7,6 +7,7 @@ import { MenuParentItem } from 'src/app/interfaces/menu.interfaces';
 import { MenuService } from '../../services/menu.service';
 import { MenuState, selectMenuItems } from './store';
 import * as fromMenu from './store/menu-items.actions';
+import * as fromGallery from '../../gallery/store/gallery.actions';
 interface GalleryMenuItem {
   title: string;
   link: string;
@@ -32,6 +33,8 @@ export class SidemenuComponent implements OnInit {
 
   public menuItems$: Observable<MenuParentItem[]> | undefined;
 
+  public isCollapsed = 0;
+
   constructor(private menuSerivce$: MenuService, private router: Router, private store: Store<MenuState>) { }
 
   ngOnInit(): void {
@@ -44,6 +47,10 @@ export class SidemenuComponent implements OnInit {
   }
 
   navigateToGalleryItem(parentId: string, childId: string, thumbType: string): void {
-    this.router.navigate(['gallery/' + parentId + '/' + childId + '/' + thumbType]);
+    this.store.dispatch(fromMenu.selectMenuItem({ parentId, childId, thumbType}));
+  }
+
+  toggleMenuItem() {
+
   }
 }

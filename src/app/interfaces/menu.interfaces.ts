@@ -7,6 +7,7 @@ export interface MenuParentItem {
   sref: string;
   title: string;
   isLoaded: boolean;
+  active?: boolean;
 }
 
 export interface MenuChildItem {

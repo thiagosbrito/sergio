@@ -1,3 +1,5 @@
-<div class="banner-wrapper">
-
-</div>
+<ul class="banner-wrapper">
+  <li *ngFor="let banner of banners; let _index = index" class="banner" [ngClass]="{'visible': banner.active}">
+    {{banner.arquivo + '-' + _index}}
+  </li>
+</ul>

@@ -21,6 +21,7 @@ export interface BannerImage {
   arquivo: string;
   id: number;
   titulo: string;
+  active?: boolean;
 }
 
 export const initialBannersState: BgState = {

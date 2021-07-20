@@ -24,25 +24,36 @@ export class GalleryComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private store: Store
   ) {
-    this.parentId = this.route.snapshot.params.galleryId;
+    this.parentId = this.route.snapshot.params.parentId;
     this.childId = this.route.snapshot.params.childId;
     this.thumbType = this.route.snapshot.params.thumbType;
   }
 
   ngOnInit(): void {
-    this.store.dispatch(fromGallery.loadGallery({
-      parentId: this.parentId,
-      childId: this.childId,
-      thumbType: this.thumbType
-    }));
 
     this.galleryImages$ = this.store.pipe(select(imagesFromSelectedItem));
+    this.getGalleryImages(this.parentId, this.childId, this.thumbType);
+    this.route.params.subscribe(({ parentId, childId, thumbType}) => {
+      this.parentId = parentId;
+      this.childId = childId;
+      this.thumbType = thumbType;
+      this.getGalleryImages(parentId, childId, thumbType);
+    });
   }
 
   mountImageUrl(thumb: any): string {
-    return `http://sergiorighini.com/2016/img/${this.parentId}/tmb/${thumb.img_thumb}`;
+    return `http://sergiorighini.com/2016/img/${this.parentId}/tmb/${thumb.img_thumb ? thumb.img_thumb : 0}`;
+  }
+
+  getGalleryImages(parentId: string, childId: string, thumbType: string) {
+    this.store.dispatch(fromGallery.loadGallery({
+      parentId: parentId,
+      childId: childId,
+      thumbType: thumbType
+    }));
   }
 
 }

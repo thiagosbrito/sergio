@@ -1,9 +1,9 @@
 <nav class="sidemenu">
 
   <ul class="gallery-menu">
-    <li *ngFor="let item of menuItems$ | async">
-      <a href="javascript.void(0)">{{item.title}}</a>
-      <ul *ngIf="item.children">
+    <li *ngFor="let item of menuItems$ | async; let _index = index">
+      <a (click)="isCollapsed = _index">{{item.title}}</a>
+      <ul *ngIf="item.children" [collapse]="_index !== isCollapsed">
         <li *ngFor="let child of item.children">
           <a (click)="navigateToGalleryItem(item.sref, child.id, child.tipo_thumb)">
             {{child.titlePt}}<br>

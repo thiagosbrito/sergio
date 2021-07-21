@@ -12,7 +12,7 @@ import { BannersEffects } from './dynamic-background/store/effects/banners.effec
 import { LoaderComponent } from './loader/loader.component';
 import { DynamicBackgroundComponent } from './dynamic-background/dynamic-background.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -30,6 +30,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     RouterModule,
     ServicesModule,
     CollapseModule,
+    CarouselModule,
     StoreModule.forFeature(
       fromMenuState.menuStateFeatureKey,
       fromMenuState.reducers,

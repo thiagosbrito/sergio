@@ -1,5 +1,7 @@
-<ul class="banner-wrapper">
-  <li *ngFor="let banner of banners; let _index = index" class="banner" [ngClass]="{'visible': banner.active}">
-    {{banner.arquivo + '-' + _index}}
-  </li>
-</ul>
+<div class="banner-wrapper">
+  <carousel [isAnimated]="true">
+    <slide *ngFor="let banner of banners$ | async let _index = index">
+      <img [src]="getImageUrl(banner)" [alt]="banner.titulo" style="display: block; height: 100vh; width: auto">
+    </slide>
+  </carousel>
+</div>

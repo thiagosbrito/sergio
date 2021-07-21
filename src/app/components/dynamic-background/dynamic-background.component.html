@@ -1,7 +1,0 @@
-<div class="banner-wrapper">
-  <carousel [isAnimated]="true">
-    <slide *ngFor="let banner of banners$ | async let _index = index">
-      <img [src]="getImageUrl(banner)" [alt]="banner.titulo" style="display: block; height: 100vh; width: auto">
-    </slide>
-  </carousel>
-</div>

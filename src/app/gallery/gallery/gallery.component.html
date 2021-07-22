@@ -1,10 +1,13 @@
-<section class="gallery">
-  <div class="thumbs-wrapper">
-    <div
-      *ngFor="let thumb of galleryImages$ | async;"
-      class="thumb"
-      [ngClass]="thumbType === '1' ? 'large' : 'medium'"
-      [style.background-image]="'url(' + mountImageUrl(thumb) + ')'">
+<app-copyright></app-copyright>
+<section class="gallery" *ngIf="selectedGalleryItem$ | async as selectedItem">
+  <div class="prev-item" (click)="navigateToPage('PREV')" [ngClass]="selectedItem.pages > 1 ? 'visible' : 'hidden'">&nbsp;</div>
+  <div class="thumb-wrapper" [ngClass]="thumbType == '1' ? 'large' : 'medium'">
+    <div *ngFor="let thumb of galleryImages$ | async; let _index = index" class="thumb">
+      <div class="thumb__loader" [attr.loaderId]="'loader-' + _index" #loaderElm>
+        <div class="custom-loader">Loading...</div>
+      </div>
+      <img [src]="mountImageUrl(thumb)" (load)="closeLoader(loaderElm)" class="thumb__image" [alt]="thumbType">
     </div>
   </div>
+  <div class="next-item" (click)="navigateToPage('NEXT')" [ngClass]="selectedItem.pages > 1 && currentPage !== selectedItem.pages.toString() ? 'visible' : 'hidden'">&nbsp;</div>
 </section>

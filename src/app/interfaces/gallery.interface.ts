@@ -26,3 +26,13 @@ export interface IBanner {
   title: string;
   titulo: string;
 }
+
+
+export interface IGalleryItem {
+  pages: number | undefined;
+  total_images: number | undefined;
+  images: any[] | undefined;
+  activeItem: string | undefined;
+  childId?: string | undefined;
+  thumbType: string | undefined;
+};

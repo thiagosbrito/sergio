@@ -31,7 +31,7 @@ export class MenuEffects {
     this.actions$.pipe(
       ofType('[MenuItems Select Item] - Select item'),
       tap((action: any) =>
-        this.router.navigate([`gallery/${action.parentId}/${action.childId}/${action.thumbType ? action.thumbType : '0'}`])
+        this.router.navigate([`gallery/${action.parentId}/${action.childId}/${action.thumbType ? action.thumbType : '0'}/page/1`])
       ),
     )
   , { dispatch: false });

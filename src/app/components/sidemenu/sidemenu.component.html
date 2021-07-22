@@ -5,7 +5,7 @@
       <a (click)="isCollapsed = _index">{{item.title}}</a>
       <ul *ngIf="item.children" [collapse]="_index !== isCollapsed">
         <li *ngFor="let child of item.children">
-          <a (click)="navigateToGalleryItem(item.sref, child.id, child.tipo_thumb)">
+          <a (click)="navigateToGalleryItem(item.sref, child.id, child.tipo_thumb, child.pages)">
             {{child.titlePt}}<br>
             {{child.titleEn}}
           </a>

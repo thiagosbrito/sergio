@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { GalleryService } from 'src/app/services/gallery.service';
-import { IGalleryImage, IGalleryResponse } from '../../interfaces/gallery.interface';
+import { IGalleryImage, IGalleryItem, IGalleryResponse } from '../../interfaces/gallery.interface';
 import * as fromGallery from '../store/gallery.actions';
 import { GalleryState, selectGalleryItem, imagesFromSelectedItem } from '../store';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { DOCUMENT } from '@angular/common';
+import { SelectedMenuItemState, selectSelectedMenuItem } from 'src/app/components/sidemenu/store';
+import { tap } from 'rxjs/operators';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
@@ -21,11 +25,16 @@ export class GalleryComponent implements OnInit {
   parentId: string;
   childId: string;
   thumbType: string;
+  totalPages: number | undefined;
+
+  selectedGalleryItem$: Observable<SelectedMenuItemState | undefined> | undefined;
+
+  @ViewChildren("loaderElm") loaderElm: QueryList<ElementRef> | undefined;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private store: Store
+    private ngxLoaderService: NgxUiLoaderService,
+    private store: Store,
   ) {
     this.parentId = this.route.snapshot.params.parentId;
     this.childId = this.route.snapshot.params.childId;
@@ -35,12 +44,18 @@ export class GalleryComponent implements OnInit {
   ngOnInit(): void {
 
     this.galleryImages$ = this.store.pipe(select(imagesFromSelectedItem));
+    this.selectedGalleryItem$ = this.store.pipe(
+      select(selectSelectedMenuItem),
+      tap((state) => this.totalPages = state?.pages),
+      tap(() => console.log(this.totalPages))
+    );
     this.getGalleryImages(this.parentId, this.childId, this.thumbType);
-    this.route.params.subscribe(({ parentId, childId, thumbType}) => {
+    this.route.params.subscribe(({ parentId, childId, thumbType, currentPage }) => {
       this.parentId = parentId;
       this.childId = childId;
       this.thumbType = thumbType;
-      this.getGalleryImages(parentId, childId, thumbType);
+      this.currentPage = currentPage
+      this.getGalleryImages(this.parentId, this.childId, this.currentPage);
     });
   }
 
@@ -52,8 +67,26 @@ export class GalleryComponent implements OnInit {
     this.store.dispatch(fromGallery.loadGallery({
       parentId: parentId,
       childId: childId,
-      thumbType: thumbType
+      currentPage: thumbType
     }));
   }
 
+  closeLoader(loader: any) {
+    let loaderId = loader.getAttribute('loaderId');
+    this.loaderElm?.map((element) => {
+      if (element.nativeElement.attributes.loaderId && element.nativeElement.attributes.loaderId.value === loaderId) {
+        element.nativeElement.classList.add('hidden');
+      }
+    })
+  }
+
+  navigateToPage(action: 'PREV' | 'NEXT'): void {
+    this.store.dispatch(fromGallery.navigateToPage({
+      currentPage: parseInt(this.currentPage),
+      action: action,
+      parentId: this.parentId,
+      childId: this.childId,
+      thumbType: this.thumbType
+    }))
+  }
 }

@@ -13,17 +13,21 @@ import { LoaderComponent } from './loader/loader.component';
 import { DynamicBackgroundComponent } from './dynamic-background/dynamic-background.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { CopyrightComponent } from './copyright/copyright.component';
 
 @NgModule({
   declarations: [
     SidemenuComponent,
     LoaderComponent,
-    DynamicBackgroundComponent
+    DynamicBackgroundComponent,
+    CopyrightComponent
   ],
   exports: [
     SidemenuComponent,
     LoaderComponent,
-    DynamicBackgroundComponent
+    DynamicBackgroundComponent,
+    CopyrightComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +35,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     ServicesModule,
     CollapseModule,
     CarouselModule,
+    NgxUiLoaderModule,
     StoreModule.forFeature(
       fromMenuState.menuStateFeatureKey,
       fromMenuState.reducers,

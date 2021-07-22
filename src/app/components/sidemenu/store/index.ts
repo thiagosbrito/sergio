@@ -21,12 +21,14 @@ export interface SelectedMenuItemState {
   parentId: string;
   childId: string;
   thumbType: string;
+  pages: number;
 }
 
 export const initialSelectedItemState: SelectedMenuItemState = {
   parentId: '',
   childId: '',
-  thumbType: ''
+  thumbType: '',
+  pages: 0
 }
 
 export const initialState: MenuState = {
@@ -42,7 +44,8 @@ export const reducers = createReducer(
   on(selectMenuItem, (state: MenuState, action: any) => ({...state, selectedItem: {
     parentId: action.parentId,
     childId: action.childId,
-    thumbType: action.thumbType
+    thumbType: action.thumbType,
+    pages: action.pages
   }}))
 )
 

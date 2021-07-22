@@ -46,8 +46,8 @@ export class SidemenuComponent implements OnInit {
     this.menuItems$ = this.store.pipe(select(selectMenuItems));
   }
 
-  navigateToGalleryItem(parentId: string, childId: string, thumbType: string): void {
-    this.store.dispatch(fromMenu.selectMenuItem({ parentId, childId, thumbType}));
+  navigateToGalleryItem(parentId: string, childId: string, thumbType: string, pages: number): void {
+    this.store.dispatch(fromMenu.selectMenuItem({ parentId, childId, thumbType, pages}));
   }
 
   toggleMenuItem() {

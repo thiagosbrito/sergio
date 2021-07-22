@@ -11,9 +11,9 @@ export class GalleryService {
 
   constructor(private http: HttpClient) { }
 
-  getGalleryImages(type: string, id: string, currentPage: string): Observable<any> {
-    return this.http.get(`http://sergiorighini.com/2016/webservices.php?__action=${'imgs_'+type}&cod=${id}&pag=${currentPage}`).pipe(
-      map((result: any) => result[`imgs_${type}`])
+  getGalleryImages(parentId: string, childId: string, currentPage: string): Observable<any> {
+    return this.http.get(`http://sergiorighini.com/2016/webservices.php?__action=${'imgs_'+parentId}&cod=${childId}&pag=${currentPage}`).pipe(
+      map((result: any) => result[`imgs_${parentId}`])
     );
   }
 

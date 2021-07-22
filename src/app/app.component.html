@@ -3,7 +3,7 @@
     <app-sidemenu></app-sidemenu>
   </div>
   <div class="content-wrapper">
-    <div class="copyright">Copyright &copy; 2021 - 1/1</div>
+    <div class="copyright" *ngIf="displayDynamicBanners">Copyright &copy; 2021</div>
     <router-outlet></router-outlet>
   </div>
 </main>

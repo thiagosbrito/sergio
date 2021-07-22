@@ -1,6 +1,11 @@
-<app-copyright></app-copyright>
+<app-copyright [currentPage]="currentPage" [totalPages]="totalPages"></app-copyright>
 <section class="gallery" *ngIf="selectedGalleryItem$ | async as selectedItem">
-  <div class="prev-item" (click)="navigateToPage('PREV')" [ngClass]="selectedItem.pages > 1 ? 'visible' : 'hidden'">&nbsp;</div>
+  <div
+    class="prev-item"
+    (click)="navigateToPage('PREV')"
+    [ngClass]="selectedItem.pages > 1 && convertToInt(currentPage) > 1 ? 'visible' : 'hidden'">
+    &nbsp;
+  </div>
   <div class="thumb-wrapper" [ngClass]="thumbType == '1' ? 'large' : 'medium'">
     <div *ngFor="let thumb of galleryImages$ | async; let _index = index" class="thumb">
       <div class="thumb__loader" [attr.loaderId]="'loader-' + _index" #loaderElm>

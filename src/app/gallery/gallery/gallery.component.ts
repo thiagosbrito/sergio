@@ -89,4 +89,8 @@ export class GalleryComponent implements OnInit {
       thumbType: this.thumbType
     }))
   }
+
+  convertToInt(string: string): number {
+    return parseInt(string);
+  }
 }

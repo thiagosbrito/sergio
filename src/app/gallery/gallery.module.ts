@@ -8,10 +8,12 @@ import * as fromGallery from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { GalleryEffects } from './store/gallery.effects';
 import { ComponentsModule } from '../components/components.module';
+import { ViewComponent } from './view/view.component';
 
 @NgModule({
   declarations: [
-    GalleryComponent
+    GalleryComponent,
+    ViewComponent
   ],
   exports: [
     GalleryComponent

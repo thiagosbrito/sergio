@@ -1,0 +1,43 @@
+section.view {
+  max-height: 100vh;
+  padding-left: 90px;
+  display: flex;
+
+  .view-picture {
+    flex: 1;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .caption {
+    position: absolute;
+    bottom: 20px;
+    right: 60px;
+    color: #FFF;
+  }
+
+  .prev-item,
+  .next-item {
+    color: #fff;
+    font-size: 32px;
+    background: center center no-repeat;
+    background-size: contain;
+    align-self: flex-end;
+    padding: 0 24px;
+    cursor: pointer;
+
+    &.hidden {
+      opacity: 0;
+    }
+  }
+
+  .prev-item {
+    background-image: url('../../../assets/images/seta-esq.png');
+  }
+
+  .next-item {
+    background-image: url('../../../assets/images/seta-dir.png');
+  }
+}

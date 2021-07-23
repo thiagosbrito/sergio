@@ -7,7 +7,7 @@
     &nbsp;
   </div>
   <div class="thumb-wrapper" [ngClass]="thumbType == '1' ? 'large' : 'medium'">
-    <div *ngFor="let thumb of galleryImages$ | async; let _index = index" class="thumb">
+    <div *ngFor="let thumb of galleryImages$ | async; let _index = index" class="thumb" (click)="selectItem(thumb.id)">
       <div class="thumb__loader" [attr.loaderId]="'loader-' + _index" #loaderElm>
         <div class="custom-loader">Loading...</div>
       </div>

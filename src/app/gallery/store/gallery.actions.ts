@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { IGalleryImage } from 'src/app/interfaces/gallery.interface';
 import { GalleryState } from './index';
 
 export const loadGallery = createAction(
@@ -23,6 +24,16 @@ export const loadGalleryFailure = createAction(
 export const navigateToPage = createAction(
   '[Gallery Navigation] - Navigate to page',
   props<{ currentPage: number, action: 'PREV' | 'NEXT', parentId: string, childId: string, thumbType: string }>()
+)
+
+export const selectItemFromGallery = createAction(
+  '[Gallery View Paint] - Select an item from gallery category',
+  props<{itemId: number}>()
+)
+
+export const setSelectedItem = createAction(
+  '[Gallery View Paint] - Set selected item on gallery store',
+  props<{selectedGalleryItem: IGalleryImage}>()
 )
 
 // export const loadGalleryItem = createAction(

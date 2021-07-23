@@ -1,0 +1,15 @@
+<app-copyright [currentPage]="currentPage" [totalPages]="totalPages"></app-copyright>
+<section class="view" *ngIf="selectedItem$ | async as image">
+  <div class="prev-item"></div>
+  <div class="view-picture">
+    <img [src]="getImageUrl(image.img_grande)" alt="">
+    <div class="caption">
+        <span ng-if="image.primeira_linha">
+          {{image.primeira_linha}}<br>
+          {{image.segunda_linha}}
+        </span>
+         <a href="{{image.link}}" target="_blank" ng-if="image.link">{{image.texto_link}}</a>
+    </div>
+  </div>
+  <div class="next-item"></div>
+</section>

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { GalleryService } from 'src/app/services/gallery.service';
 import { IGalleryImage, IGalleryItem, IGalleryResponse } from '../../interfaces/gallery.interface';
 import * as fromGallery from '../store/gallery.actions';
-import { GalleryState, selectGalleryItem, imagesFromSelectedItem } from '../store';
+import { GalleryState, selectGalleryCategory, imagesFromSelectedItem } from '../store';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { DOCUMENT } from '@angular/common';
 import { SelectedMenuItemState, selectSelectedMenuItem } from 'src/app/components/sidemenu/store';
@@ -92,5 +92,9 @@ export class GalleryComponent implements OnInit {
 
   convertToInt(string: string): number {
     return parseInt(string);
+  }
+
+  selectItem(itemId: number) {
+    this.store.dispatch(fromGallery.selectItemFromGallery({ itemId }))
   }
 }

@@ -11,8 +11,8 @@ import { MenuEffects } from './sidemenu/store/menu.effects';
 import { BannersEffects } from './dynamic-background/store/effects/banners.effects';
 import { LoaderComponent } from './loader/loader.component';
 import { DynamicBackgroundComponent } from './dynamic-background/dynamic-background.component';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { CopyrightComponent } from './copyright/copyright.component';
 
@@ -33,8 +33,8 @@ import { CopyrightComponent } from './copyright/copyright.component';
     CommonModule,
     RouterModule,
     ServicesModule,
-    CollapseModule,
     CarouselModule,
+    AccordionModule,
     NgxUiLoaderModule,
     StoreModule.forFeature(
       fromMenuState.menuStateFeatureKey,

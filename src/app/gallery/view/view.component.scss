@@ -1,32 +1,38 @@
 section.view {
+  width: 100%;
+  height: auto;
   max-height: 100vh;
   padding-left: 90px;
   display: flex;
+  position: relative;
+  overflow: hidden;
 
   .view-picture {
     flex: 1;
+    position: relative;
 
-    img {
+    .paint {
       width: 100%;
+      height: auto;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 6px;
+      right: 8px;
+      color: #FFF;
+      text-align: right;
+      font-size: 14px;
     }
   }
 
-  .caption {
-    position: absolute;
-    bottom: 20px;
-    right: 60px;
-    color: #FFF;
-  }
 
   .prev-item,
   .next-item {
-    color: #fff;
-    font-size: 32px;
-    background: center center no-repeat;
-    background-size: contain;
     align-self: flex-end;
     padding: 0 24px;
     cursor: pointer;
+    margin-bottom: 90px;
 
     &.hidden {
       opacity: 0;
@@ -34,10 +40,13 @@ section.view {
   }
 
   .prev-item {
-    background-image: url('../../../assets/images/seta-esq.png');
+    width: 20px;
+    height: 80px;
+    margin-right: 16px;
   }
 
   .next-item {
-    background-image: url('../../../assets/images/seta-dir.png');
+    width: 22px;
+    height: 82px;
   }
 }

@@ -1,36 +1,23 @@
 <nav class="sidemenu">
-
-  <ul class="gallery-menu">
-    <li *ngFor="let item of menuItems$ | async; let _index = index">
-      <a (click)="isCollapsed = _index">{{item.title}}</a>
-      <ul *ngIf="item.children" [collapse]="_index !== isCollapsed">
-        <li *ngFor="let child of item.children">
-          <a (click)="navigateToGalleryItem(item.sref, child.id, child.tipo_thumb, child.pages)">
-            {{child.titlePt}}<br>
-            {{child.titleEn}}
-          </a>
-
-          <!-- <ul ng-if="child.children" class="nav nav-pills nav-stacked">
-            <li ng-repeat="child in child.children" class="c-children">
-              <a ui-sref="main.gallery.thumbs({tipoThumb: child.tipo_thumb, tipo: child.sref, id: child.id, page: 1})">
-                {{child.titleEn}}
-              </a>
-            </li>
-          </ul> -->
-        </li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul class="navigation-menu">
-    <li>
-      <a routerLink="/">Home</a>
-    </li>
-    <li>
-      <a href="">Contact</a>
-    </li>
-    <li>
-      <a href="">About Me</a>
-    </li>
-  </ul>
+  <div class="category-nav">
+    <accordion [closeOthers]="true" [isAnimated]="true">
+      <accordion-group [heading]="item.title" *ngFor="let item of menuItems$ | async; let _index = index" class="parent">
+        <ul class="nav flex-column nav-pills">
+          <li *ngFor="let child of item.children" class="children">
+            <a (click)="navigateToGalleryItem(item.sref, child.id, child.tipo_thumb, child.pages)">
+              <span *ngIf="child.titlePt">{{child.titlePt}}</span>
+              <span *ngIf="child.titleEn">{{child.titleEn}}</span>
+            </a>
+          </li>
+        </ul>
+      </accordion-group>
+    </accordion>
+  </div>
+  <div class="section-nav">
+    <ul class="nav flex-column nav-pills">
+      <li><a href="">Contact</a></li>
+      <li><a routerLink="/">Home</a></li>
+      <li><a href="">About Me</a></li>
+    </ul>
+  </div>
 </nav>

@@ -1,10 +1,13 @@
-<app-copyright [currentPage]="currentPage" [totalPages]="totalPages"></app-copyright>
+<app-copyright [currentPage]="currentPage" [totalPages]="totalPages$"></app-copyright>
 <section class="view" *ngIf="selectedItem$ | async as image">
-  <div class="prev-item">
+  <div class="prev-item" (click)="navigateTo(image.prev)" *ngIf="image.prev">
     <img src="assets/images/seta-esq.png" alt="">
   </div>
   <div class="view-picture">
-    <img [src]="getImageUrl(image.img_grande)" [alt]="image.primeira_linha" class="paint">
+    <div class="view-picture__loader" #loader>
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <img [src]="getImageUrl(image.img_grande)" (load)="closeLoader()" [alt]="image.primeira_linha" class="paint img-responsive">
     <div class="caption">
         <span ng-if="image.primeira_linha">
           {{image.primeira_linha}}<br>
@@ -13,7 +16,7 @@
          <a href="{{image.link}}" target="_blank" ng-if="image.link">{{image.texto_link}}</a>
     </div>
   </div>
-  <div class="next-item">
+  <div class="next-item" (click)="navigateTo(image.next)" *ngIf="image.next">
     <img src="assets/images/seta-dir.png" alt="">
   </div>
 </section>

@@ -1,23 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-copyright',
   templateUrl: './copyright.component.html',
   styleUrls: ['./copyright.component.scss']
 })
-export class CopyrightComponent implements OnInit {
+export class CopyrightComponent {
 
   currentYear: number | undefined;
+
   @Input() currentPage: string = '';
-  @Input() totalPages: number | undefined = 0;
+  @Input() totalPages: Observable<number | undefined> = of(0);
 
   constructor() {
     this.currentYear = new Date().getFullYear()
-    console.log(this.currentPage);
-    console.log(this.totalPages);
   }
-
-  ngOnInit(): void {
-  }
-
 }

@@ -15,6 +15,8 @@ export interface IGalleryImage {
   segunda_linha: string;
   texto_link: string;
   tipo_ampliacao: number;
+  next?: number;
+  prev?: number;
 }
 
 export interface IBannersResponse {

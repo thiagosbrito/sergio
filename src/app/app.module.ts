@@ -12,6 +12,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxUiLoaderModule } from "ngx-ui-loader";
 import { LoaderConfig } from './constants/loader.constant';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
 @NgModule({
   declarations: [
     AppComponent
@@ -27,7 +29,9 @@ import { LoaderConfig } from './constants/loader.constant';
     EffectsModule.forRoot([]),
     NgxUiLoaderModule.forRoot(LoaderConfig)
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

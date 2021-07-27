@@ -18,6 +18,16 @@
       <li><a href="">Contact</a></li>
       <li><a routerLink="/">Home</a></li>
       <li><a href="">About Me</a></li>
+      <li class="action-buttons">
+        <a class="action-buttons__action" (click)="requestFullscreen()">
+          <i class="icon" [ngClass]="isFullscreenActive ? 'icon-collapse' : 'icon-expand'"></i>
+          <span>Fullscreen: {{isFullscreenActive ? 'on' : 'off'}}</span>
+        </a>
+        <a class="action-buttons__action">
+          <i class="icon icon-gallery"></i>
+          <span>go back to gallery</span>
+        </a>
+      </li>
     </ul>
   </div>
 </nav>

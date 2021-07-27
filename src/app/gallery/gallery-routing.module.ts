@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GalleryComponent } from './gallery/gallery.component';
+import { GalleryComponent } from './thumbs/gallery.component';
 import { ViewComponent } from './view/view.component';
 
 const routes: Routes = [
@@ -9,7 +9,7 @@ const routes: Routes = [
     component: GalleryComponent
   },
   {
-    path: ':parentId/type/:childId/:thumbType/view/:itemId',
+    path: ':parentId/:childId/:thumbType/view/:itemId',
     component: ViewComponent
   }
 ];

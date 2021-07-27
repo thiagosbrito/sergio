@@ -1,13 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MenuParentItem } from 'src/app/interfaces/menu.interfaces';
+import { MenuParentItem, MenuResponse } from 'src/app/interfaces/menu.interfaces';
 import { MenuService } from '../../services/menu.service';
-import { MenuState, selectMenuItems } from './store';
-import * as fromMenu from './store/menu-items.actions';
-import * as fromGallery from '../../gallery/store/gallery.actions';
 interface GalleryMenuItem {
   title: string;
   link: string;
@@ -34,23 +32,63 @@ export class SidemenuComponent implements OnInit {
   public menuItems$: Observable<MenuParentItem[]> | undefined;
 
   public isCollapsed = 0;
+  public isFullscreenActive: boolean = false;
 
-  constructor(private menuSerivce$: MenuService, private router: Router, private store: Store<MenuState>) { }
+  private domRef: any;
+
+  constructor(
+    private menuSerivce$: MenuService,
+    private router: Router,
+    @Inject(DOCUMENT) private document: any
+    ) { }
 
   ngOnInit(): void {
-    this.store.dispatch(fromMenu.loadMenuItems());
-    this.loadMenuItems();
+    this.domRef = document.documentElement;
+    this.menuItems$ = this.menuSerivce$.getGalleryMenuItems().pipe(
+      map(({menuItems}) => menuItems)
+    );
   }
 
-  loadMenuItems() {
-    this.menuItems$ = this.store.pipe(select(selectMenuItems));
-  }
 
   navigateToGalleryItem(parentId: string, childId: string, thumbType: string, pages: number): void {
-    this.store.dispatch(fromMenu.selectMenuItem({ parentId, childId, thumbType, pages}));
+    this.router.navigate([`gallery/${parentId}/${childId}/${thumbType ? thumbType : '0'}/page/1`])
   }
 
   toggleMenuItem() {
 
+  }
+
+  requestFullscreen() {
+    this.isFullscreenActive ? this.leaveFullscreeMode() : this.goToFullscreenMode();
+    this.isFullscreenActive = !this.isFullscreenActive;
+
+  }
+
+  private goToFullscreenMode() {
+    if (this.domRef.requestFullscreen) {
+      this.domRef.requestFullscreen();
+    } else if (this.domRef.mozRequestFullScreen) {
+      this.domRef.mozRequestFullScreen();
+    } else if (this.domRef.webkitRequestFullscreen) {
+      this.domRef.webkitRequestFullscreen();
+    } else if (this.domRef.msRequestFullscreen) {
+      this.domRef.msRequestFullscreen();
+    }
+  }
+
+  private leaveFullscreeMode() {
+    if (this.document.fullscreenElement ||
+      this.document.webkitFullscreenElement ||
+      this.document.mozFullScreenElement) {
+        this.document.exitFullscreen();
+    }
+    // if (this.document.exitFullscreen) {
+    // } else if (this.document.mozCancelFullScreen) {
+    //   this.document.mozCancelFullScreen();
+    // } else if (this.document.webkitExitFullscreen) {
+    //   this.document.webkitExitFullscreen();
+    // } else if (this.document.msExitFullscreen) {
+    //   this.document.msExitFullscreen();
+    // }
   }
 }

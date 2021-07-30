@@ -6,6 +6,14 @@ main.main-container {
   height: 100vh;
   position: relative;
   z-index: 1;
+  transition: background ease .65s;
+
+  &.main {
+    background-color: transparent;
+  }
+  &.gradient {
+    background: linear-gradient(to right,#938f90 0,#fff 100%);
+  }
 
   h1 {
     color: #FFF;
@@ -17,12 +25,16 @@ main.main-container {
 .menu-wrapper {
   min-width: 252px;
   width: 252px;
+  left: 0;
 
-  @media only screen
-  and (min-device-width: 320px)
-  and (max-device-width: 1024px)
-  and (-webkit-min-device-pixel-ratio: 1) {
-    display: none;
+  @include media(">phone", "<desktop") {
+    width: 100vw;
+    max-height: 100vh;
+  }
+
+  @include media(">=desktop") {
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%);
   }
 
 }
@@ -33,20 +45,19 @@ main.main-container {
   display: flex;
   flex-direction: column;
 
-  @media only screen
-  and (min-device-width: 320px)
-  and (max-device-width: 1024px)
-  and (-webkit-min-device-pixel-ratio: 1) {
-    width: 100vw;
-    max-width: 100%;
+  @include media(">phone", "<=tablet") {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
   }
 }
 
 .dynamic-background {
   width: 100vw;
   height: 100vh;
-  // background: url('http://sergiorighini.com/2016/img/banners/217fe74d1d8eca02876d23ddfc7720a5.jpg');
-  // background-size: cover;
   position: absolute;
   top: 0;
   left: 0;

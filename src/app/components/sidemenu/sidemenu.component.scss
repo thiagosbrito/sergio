@@ -1,9 +1,55 @@
+@import '../../styles/media';
+$hamburger-padding-x           : 15px !default;
+$hamburger-padding-y           : 15px !default;
+$hamburger-layer-width         : 40px !default;
+$hamburger-layer-height        : 4px !default;
+$hamburger-layer-spacing       : 6px !default;
+$hamburger-layer-color         : #FFF !default;
+$hamburger-layer-border-radius : 4px !default;
+$hamburger-hover-opacity       : 0.7 !default;
+$hamburger-active-layer-color  : $hamburger-layer-color !default;
+$hamburger-active-hover-opacity: $hamburger-hover-opacity !default;
+
+// To use CSS filters as the hover effect instead of opacity,
+// set $hamburger-hover-use-filter as true and
+// change the value of $hamburger-hover-filter accordingly.
+$hamburger-hover-use-filter   : false !default;
+$hamburger-hover-filter       : opacity(50%) !default;
+$hamburger-active-hover-filter: $hamburger-hover-filter !default;
+
+// Types (Remove or comment out what you don’t need)
+$hamburger-types: (
+  spring,
+) !default;
+@import '/node_modules/hamburgers/_sass/hamburgers/hamburgers.scss';
+
 .sidemenu {
 	position: fixed;
 	z-index: 2;
-	top: 53px;
+	top: 24px;
 	left: 5px;
 	opacity: 1;
+  transition: all ease-in .35s;
+
+  .hamburger {
+    margin-top: 20px;
+    @include media(">=desktop") {
+      display: none;
+    }
+  }
+
+  .logo {
+    background-image: url('../../../assets/images/logo-sem-sergio.png');
+    background-position: center center;
+    background-size: 65%;
+    background-repeat: no-repeat;
+    width: 120px;
+    max-width: 120px;
+    height: 50px;
+    transition: all ease .5s;
+    margin-bottom: 24px;
+  }
+
   .category-nav {
 
     accordion-group ::ng-deep {
@@ -30,14 +76,14 @@
       }
 
       a:hover,
-        a:focus {
-          color: #58edb1;
-          text-decoration: none
-        }
+      a:focus {
+        color: #58edb1;
+        text-decoration: none
+      }
 
-        a:active {
-          color: #E8E825
-        }
+      a:active {
+        color: #E8E825
+      }
 
       .children {
         &:not(:last-child) {
@@ -111,6 +157,11 @@
       &__action {
         display: inline-flex;
         align-items: center;
+        cursor: pointer;
+
+        &:hover {
+          color: #58edb1;
+        }
 
         i {
           font-size: 16px;
@@ -151,96 +202,35 @@
 			}
 		}
 	}
-}
-.btn-action-gallery {
-  width: 100%;
-  height: 32px;
-  padding: 0;
-  position: fixed;
-  bottom: 20px;
-  ul {
-    padding: 0;
-    list-style: none;
-    box-sizing: border-box;
-    padding-left: 12px;
-    li {
-      float: left;
-      margin-right: 5px;
+
+  @include media(">phone", "<desktop") {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .35);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+
+    &.open {
+      height: 100vh;
+    }
+
+    &.closed {
+      height: 95px;
+
+      .section-nav,
+      .category-nav {
+        display: none;
+      }
+
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      right: 20px;
     }
   }
-}
 
-.toggle {
-  position: fixed;
-  top: 20px;
-  right: 0;
-  bottom: 0;
-  left: 20px;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  z-index: 1;
-  font-size: 30px;
-  color: black;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
-.far-left {
-  left: 230px;
-}
-
-.toggle:hover { color: #29D4E8; }
-
-.sidebar {
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  position: fixed;
-  top: 0px;
-  right: 0;
-  bottom: 0px;
-  left: -220px;
-  width: 220px;
-  padding: 30px;
-  background: #333;
-  color: white;
-  z-index: 99999;
-}
-.show-sdbar {
-  left: 0px
-}
-
-.sidebar ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.sidebar li {
-  text-transform: uppercase;
-  opacity: .5;
-  cursor: pointer;
-  -webkit-transition: all 0.5s ease-in;
-  -moz-transition: all 0.5s ease-in;
-  transition: all 0.5s ease-in;
-}
-
-.sidebar li:hover {
-  opacity: 1;
-  color: #29D4E8;
-}
-
-#sidebartoggler { display: none; }
-
-#sidebartoggler:checked + .page-wrapper .sidebar { left: 0px; }
-
-#sidebartoggler:checked + .page-wrapper .toggle { left: 200px; }
-
-#sidebartoggler:checked + .page-wrapper .page-content { padding-left: 200px; }
-
-.page-content {
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  transition: all 0.5s ease;
 }

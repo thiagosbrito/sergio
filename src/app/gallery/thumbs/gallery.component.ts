@@ -29,6 +29,8 @@ export class GalleryComponent implements OnInit {
 
   totalPages$: Observable<number> = of(0);
 
+  allImages$!: Observable<any[]>
+
   @ViewChildren("loaderElm") loaderElm: QueryList<ElementRef> | undefined;
 
   constructor(
@@ -40,16 +42,24 @@ export class GalleryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    this.getAllImages();
     this.getImagesFromGallery();
+
     this.router.events.pipe(
       filter((e: any) => e instanceof NavigationEnd)
     ).subscribe(() => {
+      this.getAllImages();
       this.getImagesFromGallery();
     });
   }
 
   mountImageUrl(thumb: any): string {
     return `http://sergiorighini.com/2016/img/${this.parentId}/tmb/${thumb.img_thumb ? thumb.img_thumb : 0}`;
+  }
+
+  getImageUrl(image: IGalleryImage): string {
+    return `http://sergiorighini.com/2016/img/${this.parentId}/${image.img_grande}`;
   }
 
   closeLoader(loader: any) {
@@ -70,6 +80,13 @@ export class GalleryComponent implements OnInit {
     })
   }
 
+  getAllImages() {
+    this.updateParamsForQuery();
+    this.galleryService$.getGalleryImages(this.parentId, this.childId, '0').subscribe((response) => {
+      this.allImages$ = of(response.images);
+    })
+  }
+
   navigateToPage(action: 'PREV' | 'NEXT'): void {
     let currPage = parseInt(this.currentPage);
     action === 'NEXT' ? currPage = currPage + 1 : currPage = currPage - 1;
@@ -84,6 +101,11 @@ export class GalleryComponent implements OnInit {
   selectItem(itemId: number) {
     // change to effect
     this.router.navigate([`gallery/${this.parentId}/${this.childId}/${this.thumbType ? this.thumbType : '0'}/view/${itemId}`])
+  }
+
+  get isMobile() {
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){ return true }
+    else { return false }
   }
 
   private updateParamsForQuery() {

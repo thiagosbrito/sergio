@@ -3,6 +3,10 @@ body {
   margin: 0;
   background-color: #000;
   line-height: normal !important;
+
+  @media screen and (max-width: 1023px) {
+    overflow: hidden
+  }
 }
 // @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 

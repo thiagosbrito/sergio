@@ -1,0 +1,46 @@
+@import '../../styles/media';
+
+
+
+section.about-me {
+  width: 100%;
+  background-position: top right;
+  background-repeat: no-repeat;
+  overflow: hidden;
+
+  .content {
+    height: 100vh;
+    margin-left: auto;
+    overflow-y: auto;
+    padding-right: 65px;
+    width: 70%;
+  }
+
+  .about-me__title {
+    display: none
+  }
+
+  @include media(">phone", "<desktop") {
+
+    background-position: top center;
+    background-size: cover;
+
+    .about-me__title {
+      padding-left: 16px;
+      padding-bottom: 18px;
+      font-weight: lighter;
+    }
+
+    .content {
+      width: 100vw;
+      height: calc(100vh);
+      padding: 0 16px 16px 16px;
+      overflow-y: auto;
+      div {
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+  }
+
+}

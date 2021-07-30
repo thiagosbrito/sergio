@@ -2,6 +2,39 @@ $spinner-color: rgba(255, 255, 255, .65);
 $spinner-size: 60px;
 
 @import "~scss-spinners/spinners";
+@import '../../styles/media';
+
+::ng-deep .carousel .carousel-control-prev-icon,
+::ng-deep .carousel .carousel-control-next-icon {
+  background-color: #000;
+  width: 50px;
+  height: 50px;
+  background-size: 41%;
+  border-radius: 50%;
+}
+
+::ng-deep .carousel .sr-only {
+  display: none;
+}
+
+@include media(">phone", "<desktop") {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+@include media(">=desktop") {
+  .desktop {
+    display: block;
+  }
+  .mobile {
+    display: none;
+  }
+}
 
 section.gallery {
   max-height: 100vh;

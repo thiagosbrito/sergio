@@ -1,0 +1,36 @@
+@import '../../styles/media';
+
+section.contact-me {
+  width: 100%;
+  height: 100vh;
+  padding-top: 24px;
+  padding-left: 12px;
+
+  @include media(">phone", "<=tablet") {
+    padding-top: 96px;
+    padding-left: 16px;
+  }
+
+  .contact-me__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 8px;
+
+    @include media(">phone", "<=tablet") {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+    }
+
+    .contact-me__content__item {
+      @include media(">phone", "<=tablet") {
+        &:not(:first-child) {
+          border-top: 1px solid #999;
+          padding-top: 16px;
+          padding-right: 16px;
+          margin-top: 16px;
+        }
+      }
+    }
+  }
+}

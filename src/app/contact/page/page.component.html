@@ -1,0 +1,12 @@
+<section class="contact-me" *ngIf="content$ | async as content">
+  <div class="contact-me__content">
+    <div class="contact-me__content__item" *ngFor="let item of content">
+      <strong>{{item.galeria}}</strong><br>
+      {{item.endereco}}<br>
+      {{item.cidade_pais}}<br>
+      phone: {{item.telefone}}<br>
+      <a class="site" target="_blank" href="{{item.site}}" style="color: #000;" ng-if="item.site">{{item.site}}</a>
+      <a class="email" href="mailto:{{item.email}}" ng-if="item.email && !item.site">{{item.email}}</a>
+    </div>
+  </div>
+</section>

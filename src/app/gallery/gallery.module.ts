@@ -9,11 +9,14 @@ import { EffectsModule } from '@ngrx/effects';
 // import { GalleryEffects } from './store/gallery.effects';
 import { ComponentsModule } from '../components/components.module';
 import { ViewComponent } from './view/view.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { AppCarouselSwipeDirective } from '../directives/carousel-swipe.directive';
 
 @NgModule({
   declarations: [
     GalleryComponent,
-    ViewComponent
+    ViewComponent,
+    AppCarouselSwipeDirective
   ],
   exports: [
     GalleryComponent
@@ -21,6 +24,7 @@ import { ViewComponent } from './view/view.component';
   imports: [
     CommonModule,
     GalleryRoutingModule,
+    CarouselModule,
     // StoreModule.forFeature(
     //   fromGallery.galleryStateFeatureKey,
     //   fromGallery.galleryReducers

@@ -5,6 +5,14 @@ const routes: Routes = [
   {
     path: 'gallery',
     loadChildren: () => import('./gallery/gallery.module').then((m) => m.GalleryModule)
+  },
+  {
+    path: 'contact-me',
+    loadChildren: () => import('./contact/contact.module').then((m) => m.ContactModule)
+  },
+  {
+    path: 'about-me',
+    loadChildren: () => import('./about-me/about-me.module').then((m) => m.AboutMeModule)
   }
 ];
 

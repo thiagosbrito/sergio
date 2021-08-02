@@ -171,6 +171,9 @@ $hamburger-types: (
           text-transform: lowercase;
         }
       }
+      @include media(">=phone", "<desktop") {
+        display: none;
+      }
     }
 	}
 	.panel-group .panel-heading + .panel-collapse > .panel-body,
@@ -203,7 +206,7 @@ $hamburger-types: (
 		}
 	}
 
-  @include media(">phone", "<desktop") {
+  @include media(">=phone", "<desktop") {
     position: absolute;
     left: 0;
     top: 0;

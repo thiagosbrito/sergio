@@ -27,7 +27,7 @@ main.main-container {
   width: 252px;
   left: 0;
 
-  @include media(">phone", "<desktop") {
+  @include media(">=phone", "<desktop") {
     width: 100vw;
     max-height: 100vh;
   }
@@ -45,7 +45,7 @@ main.main-container {
   display: flex;
   flex-direction: column;
 
-  @include media(">phone", "<=tablet") {
+  @include media(">=phone", "<=tablet") {
     width: 100%;
     position: absolute;
     left: 0;

@@ -13,6 +13,8 @@ export interface IGalleryImage {
   obra_2: string;
   primeira_linha: string;
   segunda_linha: string;
+  terceira_linha: string;
+  quarta_linha: string;
   texto_link: string;
   tipo_ampliacao: number;
   next?: number;

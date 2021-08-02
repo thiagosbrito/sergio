@@ -63,12 +63,17 @@ export class ViewComponent implements OnInit {
   getCurrentImageIndex() {}
 
   getImageUrl(urlString: string | undefined): string {
-    return `http://sergiorighini.com/2016/img/${this.parentId}/${urlString}`;
+    // console.log('getImageUrl called once');
+    // const scope = this;
+    // setTimeout(() => {
+    //   scope.closeLoader();
+    // }, 1500);
+    return `url(http://sergiorighini.com/2016/img/${this.parentId}/${urlString})`;
   }
 
   navigateTo(itemId: number | undefined) {
     this.itemId = itemId?.toString();
-    this.showLoader();
+    // this.showLoader();
     this.router.navigate([`gallery/${this.parentId}/${this.childId}/${this.thumbType ? this.thumbType : '0'}/view/${itemId}`])
   }
 
@@ -78,6 +83,7 @@ export class ViewComponent implements OnInit {
   }
 
   closeLoader() {
+    console.log('closeLoader called once');
     this.loader.nativeElement.classList.add('hidden');
   }
 

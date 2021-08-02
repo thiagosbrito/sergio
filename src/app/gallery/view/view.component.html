@@ -4,14 +4,17 @@
     <img src="assets/images/seta-esq.png" alt="">
   </div>
   <div class="view-picture">
-    <div class="view-picture__loader" #loader>
+    <!-- <div class="view-picture__loader" #loader>
       <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-    </div>
-    <img [src]="getImageUrl(image.img_grande)" (load)="closeLoader()" [alt]="image.primeira_linha" class="paint img-responsive">
+    </div> -->
+    <div class="paint-picture" [style.background-image]="getImageUrl(image.img_grande)"></div>
+    <!-- <img [src] [alt]="image.primeira_linha" class="paint img-responsive"> -->
     <div class="caption">
         <span ng-if="image.primeira_linha">
           {{image.primeira_linha}}<br>
-          {{image.segunda_linha}}
+          {{image.segunda_linha}}<br>
+          {{image.terceira_linha}}<br>
+          {{image.quarta_linha}}<br>
         </span>
          <a href="{{image.link}}" target="_blank" ng-if="image.link">{{image.texto_link}}</a>
     </div>

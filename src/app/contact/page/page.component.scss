@@ -6,7 +6,7 @@ section.contact-me {
   padding-top: 24px;
   padding-left: 12px;
 
-  @include media(">phone", "<=tablet") {
+  @include media(">=phone", "<=tablet") {
     padding-top: 96px;
     padding-left: 16px;
   }
@@ -17,13 +17,14 @@ section.contact-me {
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 8px;
 
-    @include media(">phone", "<=tablet") {
+    @include media(">=phone", "<=tablet") {
+      padding-top: 64px;
       grid-template-columns: 1fr;
       grid-template-rows: 1fr;
     }
 
     .contact-me__content__item {
-      @include media(">phone", "<=tablet") {
+      @include media(">=phone", "<=tablet") {
         &:not(:first-child) {
           border-top: 1px solid #999;
           padding-top: 16px;

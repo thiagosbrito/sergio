@@ -30,6 +30,10 @@ $hamburger-types: (
 	left: 5px;
 	opacity: 1;
   transition: all ease-in .35s;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  width: 300px;
 
   .hamburger {
     margin-top: 20px;
@@ -135,8 +139,9 @@ $hamburger-types: (
   }
 
   .section-nav {
-    position: fixed;
-    bottom: 20px;
+    margin-top: auto;
+    margin-bottom: 40px;
+
     a {
       font-family: 'Arial';
       text-transform: uppercase;
@@ -144,7 +149,7 @@ $hamburger-types: (
       line-height: 0px;
       font-size: 13px;
       color: #FFF;
-      padding-left: 20px;
+      padding-left: 16px;
       &:hover,
       &:focus {
         background-color: transparent !important;
@@ -224,12 +229,10 @@ $hamburger-types: (
       background-color: transparent;
       backdrop-filter: none;
 
-
       .section-nav,
       .category-nav {
         display: none;
       }
-
     }
 
     .logo {
@@ -237,6 +240,19 @@ $hamburger-types: (
       top: 20px;
       right: 20px;
     }
-  }
 
+  }
+  .menu-header {
+    height: 80px;
+  }
+  .menus-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .section-nav {
+      margin-top: auto;
+      margin-bottom: 40px;
+    }
+  }
 }

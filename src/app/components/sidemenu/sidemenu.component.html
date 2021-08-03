@@ -1,39 +1,43 @@
 <nav class="sidemenu"[ngClass]="!isMenuActive ? 'closed' : 'open' ">
-  <button class="hamburger hamburger--spring" [ngClass]="isMenuActive ? 'is-active' : ''" type="button" (click)="isMenuActive = !isMenuActive">
-    <span class="hamburger-box">
-      <span class="hamburger-inner"></span>
-    </span>
-  </button>
-  <div class="logo"></div>
-  <div class="category-nav" *ngIf="isGalleryMenuVisible">
-    <accordion [closeOthers]="true" [isAnimated]="true">
-      <accordion-group [heading]="item.title" *ngFor="let item of menuItems$ | async; let _index = index" class="parent">
-        <ul class="nav flex-column nav-pills">
-          <li *ngFor="let child of item.children" class="children">
-            <a (click)="navigateToGalleryItem(item.sref, child.id, child.tipo_thumb, child.pages)">
-              <span *ngIf="child.titlePt">{{child.titlePt}}</span>
-              <span *ngIf="child.titleEn">{{child.titleEn}}</span>
-            </a>
-          </li>
-        </ul>
-      </accordion-group>
-    </accordion>
+  <div class="menu-header">
+    <button class="hamburger hamburger--spring" [ngClass]="isMenuActive ? 'is-active' : ''" type="button" (click)="isMenuActive = !isMenuActive">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    <div class="logo"></div>
   </div>
-  <div class="section-nav">
-    <ul class="nav flex-column nav-pills">
-      <li><a routerLink="/">Home</a></li>
-      <li><a routerLink="/about-me">About Me</a></li>
-      <li><a routerLink="/contact-me">Contact</a></li>
-      <li class="action-buttons" *ngIf="isControlButtonsVisible"> <!-- display buttons only if it's gallery-->
-        <a class="action-buttons__action" (click)="requestFullscreen()">
-          <i class="icon" [ngClass]="isFullscreenActive ? 'icon-collapse' : 'icon-expand'"></i>
-          <span>Fullscreen: {{isFullscreenActive ? 'on' : 'off'}}</span>
-        </a>
-        <a class="action-buttons__action" (click)="goBackToGallery()" *ngIf="isGoToGalleryButtonVisible"> <!-- display button only if in view route -->
-          <i class="icon icon-gallery"></i>
-          <span>go back to gallery</span>
-        </a>
-      </li>
-    </ul>
+  <div class="menus-wrapper">
+    <div class="category-nav" *ngIf="isGalleryMenuVisible">
+      <accordion [closeOthers]="true" [isAnimated]="true">
+        <accordion-group [heading]="item.title" *ngFor="let item of menuItems$ | async; let _index = index" class="parent">
+          <ul class="nav flex-column nav-pills">
+            <li *ngFor="let child of item.children" class="children">
+              <a (click)="navigateToGalleryItem(item.sref, child.id, child.tipo_thumb, child.pages)">
+                <span *ngIf="child.titlePt">{{child.titlePt}}</span>
+                <span *ngIf="child.titleEn">{{child.titleEn}}</span>
+              </a>
+            </li>
+          </ul>
+        </accordion-group>
+      </accordion>
+    </div>
+    <div class="section-nav">
+      <ul class="nav flex-column nav-pills">
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/about-me">About Me</a></li>
+        <li><a routerLink="/contact-me">Contact</a></li>
+        <li class="action-buttons" *ngIf="isControlButtonsVisible"> <!-- display buttons only if it's gallery-->
+          <a class="action-buttons__action" (click)="requestFullscreen()">
+            <i class="icon" [ngClass]="isFullscreenActive ? 'icon-collapse' : 'icon-expand'"></i>
+            <span>Fullscreen: {{isFullscreenActive ? 'on' : 'off'}}</span>
+          </a>
+          <a class="action-buttons__action" (click)="goBackToGallery()" *ngIf="isGoToGalleryButtonVisible"> <!-- display button only if in view route -->
+            <i class="icon icon-gallery"></i>
+            <span>go back to gallery</span>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

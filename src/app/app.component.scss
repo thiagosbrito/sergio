@@ -20,6 +20,10 @@ main.main-container {
     text-align: center;
     width: 100%;
   }
+
+  @include media(">=phone", "<desktop") {
+    display: block;
+  }
 }
 
 .menu-wrapper {

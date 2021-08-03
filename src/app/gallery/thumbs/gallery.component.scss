@@ -17,6 +17,8 @@ $spinner-size: 60px;
 
   slide {
     position: relative;
+    width: 100vw;
+    height: 100vh;
 
     .carousel-caption {
       position: absolute;
@@ -43,7 +45,31 @@ $spinner-size: 60px;
           color: #4B3F72;
         }
       }
+    }
 
+    @include media(">=phone", "<desktop") {
+      @media all and (orientation: landscape) {
+        img {
+          width: 100% !important;
+          height: auto !important;
+        }
+
+        .carousel-caption {
+          position: fixed;
+          height: 100px !important;
+          bottom: 0px;
+        }
+
+
+      }
+    }
+  }
+  @include media(">=phone", "<desktop") {
+    @media all and (orientation: landscape) {
+      .carousel-control-prev,
+      .carousel-control-next {
+        bottom: 0 !important;
+      }
     }
   }
 }

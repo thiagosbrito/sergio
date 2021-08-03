@@ -221,6 +221,9 @@ $hamburger-types: (
 
     &.closed {
       height: 95px;
+      background-color: transparent;
+      backdrop-filter: none;
+
 
       .section-nav,
       .category-nav {

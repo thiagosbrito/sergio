@@ -21,26 +21,26 @@
   </section>
 </div>
 <div class="mobile" >
-  <carousel [isAnimated]="false" appCarouselSwipe [startFromIndex]="0">
+  <carousel [isAnimated]="false" appCarouselSwipe [startFromIndex]="0" [interval]="0">
     <slide *ngFor="let image of allImages$ | async let _index = index">
-      <img [src]="getImageUrl(image)" [alt]="image.titulo" style="display: block; height: 100vh; width: auto">
-      <div class="carousel-caption d-block" *ngIf="image.texto_link; else caption">
+      <img [src]="getImageUrl(image)" [alt]="image.titulo" class="img-fluid">
+      <div class="carousel-caption d-block">
         <div class="content">
-          <a [href]="image.link" target="_blank">{{image.texto_link}}</a>
-        </div>
-        <div class="shadow"></div>
-      </div>
-      <ng-template #caption>
-        <div class="carousel-caption d-block">
-          <div class="content">
+          <a
+            *ngIf="image.texto_link; else caption"
+            [href]="image.link"
+            target="_blank">
+              {{image.texto_link}}
+          </a>
+          <ng-template #caption>
             <p>{{image.primeira_linha}}</p>
             <p>{{image.segunda_linha}}</p>
             <p>{{image.terceira_linha}}</p>
             <p>{{image.quarta_linha}}</p>
-          </div>
+          </ng-template>
           <div class="shadow"></div>
         </div>
-      </ng-template>
+      </div>
     </slide>
   </carousel>
 </div>

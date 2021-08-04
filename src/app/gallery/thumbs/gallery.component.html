@@ -21,22 +21,33 @@
   </section>
 </div>
 <div class="mobile" >
-  <carousel [isAnimated]="false" appCarouselSwipe [startFromIndex]="0" [interval]="0">
+  <div class="copyright-mobile">
+    Copyright &copy; 2021 - {{currentMobilePage}}/{{(allImages$ | async)?.length}}
+    <!-- Copyright &copy; {{currentYear}} - {{currentPage}}/{{totalPages | async}} -->
+  </div>
+  <carousel [isAnimated]="false" appCarouselSwipe [startFromIndex]="0" [interval]="0" (activeSlideChange)="activeSlideChanged($event)">
     <slide *ngFor="let image of allImages$ | async let _index = index">
       <img [src]="getImageUrl(image)" [alt]="image.titulo" class="img-fluid">
       <div class="carousel-caption d-block">
         <div class="content">
           <a
             *ngIf="image.texto_link; else caption"
+            class="image-link"
             [href]="image.link"
             target="_blank">
-              {{image.texto_link}}
+            <i class="icon icon-link"></i>
+            <span>{{image.texto_link}}</span>
           </a>
           <ng-template #caption>
-            <p>{{image.primeira_linha}}</p>
-            <p>{{image.segunda_linha}}</p>
-            <p>{{image.terceira_linha}}</p>
-            <p>{{image.quarta_linha}}</p>
+            <div class="text-wrap">
+              <i class="icon icon-info"></i>
+              <div class="text">
+                <p>{{image.primeira_linha}}</p>
+                <p>{{image.segunda_linha}}</p>
+                <p>{{image.terceira_linha}}</p>
+                <p>{{image.quarta_linha}}</p>
+              </div>
+            </div>
           </ng-template>
           <div class="shadow"></div>
         </div>

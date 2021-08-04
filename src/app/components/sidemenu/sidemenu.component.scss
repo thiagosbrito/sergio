@@ -1,7 +1,7 @@
 @import '../../styles/media';
 $hamburger-padding-x           : 15px !default;
 $hamburger-padding-y           : 15px !default;
-$hamburger-layer-width         : 40px !default;
+$hamburger-layer-width         : 30px !default;
 $hamburger-layer-height        : 4px !default;
 $hamburger-layer-spacing       : 6px !default;
 $hamburger-layer-color         : #FFF !default;
@@ -45,7 +45,7 @@ $hamburger-types: (
   .logo {
     background-image: url('../../../assets/images/logo-sem-sergio.png');
     background-position: center center;
-    background-size: 65%;
+    background-size: 75%;
     background-repeat: no-repeat;
     width: 120px;
     max-width: 120px;
@@ -244,6 +244,17 @@ $hamburger-types: (
   }
   .menu-header {
     height: 80px;
+
+    @include media("<desktop") {
+      display: flex;
+
+      .logo {
+        margin-left: auto;
+        position: relative;
+        top: 26px;
+        margin-right: -20px;
+      }
+    }
   }
   .menus-wrapper {
     flex: 1;

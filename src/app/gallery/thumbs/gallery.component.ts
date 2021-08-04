@@ -27,6 +27,8 @@ export class GalleryComponent implements OnInit {
   thumbType!: string;
   currentPage!: string;
 
+  currentMobilePage: number = 1;
+
   totalPages$: Observable<number> = of(0);
 
   allImages$!: Observable<any[]>
@@ -81,6 +83,7 @@ export class GalleryComponent implements OnInit {
   }
 
   getAllImages() {
+    this.allImages$ = EMPTY;
     this.updateParamsForQuery();
     this.galleryService$.getGalleryImages(this.parentId, this.childId, '0').subscribe((response) => {
       this.allImages$ = of(response.images);
@@ -106,6 +109,10 @@ export class GalleryComponent implements OnInit {
   get isMobile() {
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){ return true }
     else { return false }
+  }
+
+  activeSlideChanged(event: any) {
+    this.currentMobilePage = event + 1;
   }
 
   private updateParamsForQuery() {

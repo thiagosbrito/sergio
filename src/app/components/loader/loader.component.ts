@@ -13,7 +13,6 @@ export class LoaderComponent implements OnInit {
   constructor(private ngxLoaderService: NgxUiLoaderService) { }
 
   ngOnInit(): void {
-    console.log(`loader with id ${this.loaderId} has been initialized`);
     this.ngxLoaderService.start(this.loaderId);
   }
 

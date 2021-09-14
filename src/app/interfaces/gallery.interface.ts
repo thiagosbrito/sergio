@@ -8,6 +8,7 @@ export interface IGalleryImage {
   id: number;
   img_grande: string;
   img_thumb: string;
+  img_mobile: string;
   link: string;
   obra_1: string;
   obra_2: string;
@@ -19,6 +20,7 @@ export interface IGalleryImage {
   tipo_ampliacao: number;
   next?: number;
   prev?: number;
+  whiteText?: boolean;
 }
 
 export interface IBannersResponse {

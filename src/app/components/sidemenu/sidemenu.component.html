@@ -13,7 +13,7 @@
         <accordion-group [heading]="item.title" *ngFor="let item of menuItems$ | async; let _index = index" class="parent">
           <ul class="nav flex-column nav-pills">
             <li *ngFor="let child of item.children" class="children">
-              <a (click)="navigateToGalleryItem(item.sref, child.id, child.tipo_thumb, child.pages)">
+              <a (click)="navigateToGalleryItem(item.sref, child.id, child.tipo_thumb, child.pages)" *ngIf="child.titleEn != 'Big Caves'">
                 <span *ngIf="child.titlePt">{{child.titlePt}}</span>
                 <span *ngIf="child.titleEn">{{child.titleEn}}</span>
               </a>

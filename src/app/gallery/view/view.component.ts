@@ -20,7 +20,7 @@ export class ViewComponent implements OnInit {
   thumbType!: string;
   itemId: string | undefined;
   currentPage: string = '0';
-  totalPages$: Observable<number | undefined> = of(0);
+  totalPages$: Observable<number | null> = of(0);
   selectedCategoryImages: any;
   allImages!: IGalleryImage[];
 

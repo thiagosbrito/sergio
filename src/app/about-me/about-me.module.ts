@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AboutMeRoutingModule } from './about-me-routing.module';
 import { PageComponent } from './page/page.component';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { PageComponent } from './page/page.component';
   ],
   imports: [
     CommonModule,
-    AboutMeRoutingModule
+    AboutMeRoutingModule,
+    NgScrollbarModule
   ]
 })
 export class AboutMeModule { }

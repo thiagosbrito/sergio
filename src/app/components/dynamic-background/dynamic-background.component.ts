@@ -12,12 +12,13 @@ const carouselConfig: CarouselConfig = {
   interval: 5000,
   noPause: true,
   showIndicators: false,
-  noWrap: true,
+  noWrap: false,
   indicatorsByChunk: false,
   itemsPerSlide: 1,
   pauseOnFocus: false,
   singleSlideOffset: false
 }
+const isMobile = window.innerWidth < 1366;
 @Component({
   selector: 'app-dynamic-background',
   templateUrl: './dynamic-background.component.html',
@@ -39,7 +40,13 @@ export class DynamicBackgroundComponent implements OnInit {
   }
 
   public getImageUrl(image: BannerImage) {
-    return `http://sergiorighini.com/2016/img/banners/${image.arquivo}`;
+    let imageUrl;
+    if (isMobile) {
+      imageUrl = `http://sergiorighini.com/2016/img/banners/mobile/${image.arquivo_mobile}`;
+    } else {
+      imageUrl = `http://sergiorighini.com/2016/img/banners/${image.arquivo}`;
+    }
+    return imageUrl;
   }
 
   closeLoader(loaderId: string) {

@@ -61,7 +61,7 @@ export class GalleryComponent implements OnInit {
   }
 
   getImageUrl(image: IGalleryImage): string {
-    return `http://sergiorighini.com/2016/img/${this.parentId}/${image.img_grande}`;
+    return `url(http://sergiorighini.com/2016/img/${this.parentId}/mobile/${image.img_mobile})`;
   }
 
   closeLoader(loader: any) {

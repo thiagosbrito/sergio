@@ -19,6 +19,7 @@ export interface BgState {
 
 export interface BannerImage {
   arquivo: string;
+  arquivo_mobile: string;
   id: number;
   titulo: string;
   active?: boolean;

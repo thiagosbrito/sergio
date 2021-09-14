@@ -19,32 +19,37 @@ $spinner-size: 60px;
     position: relative;
     width: 100vw;
     height: 100vh;
+    background-color: #000;
+
+    .item {
+      display: flex;
+      flex-direction: column;
+    }
 
     .carousel-caption {
-      position: absolute;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      background-color: rgba(255, 255, 255, .45);
-      -webkit-backdrop-filter:saturate(120%) blur(30px);
-      backdrop-filter: saturate(120%) blur(30px);
-      text-align: left;
+      width: 100%;
+      text-align: right;
       line-height: 15px;
+      left: 0;
+      right: 0;
 
       .content {
-        padding: 8px 12px;
         z-index: 10;
+        display: flex;
+        width: 100%;
+        text-align: right;
+        justify-content: flex-end;
 
         p, a {
           font-family: 'Atilla Normal';
-          font-size: 14px;
+          font-size: 16px;
           text-decoration: none;
         }
         p {
           color: #FFF;
         }
         a {
-          color: #4B3F72;
+          color: #FFF;
         }
 
         .image-link,
@@ -54,36 +59,62 @@ $spinner-size: 60px;
           .icon {
             font-size: 32px;
           }
-          span, .text {
+          span {
             padding: 8px 16px;
           }
         }
       }
     }
 
-    @include media(">=phone", "<desktop") {
-      @media all and (orientation: landscape) {
-        img {
-          width: 100% !important;
-          height: auto !important;
-        }
+    .bg-wrapper {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      background-position: top right;
+      background-size: contain;
+      background-repeat: no-repeat;
 
-        .carousel-caption {
-          position: fixed;
-          height: 100px !important;
-          bottom: 0px;
-        }
-
-
+      .carousel-caption {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 10px;
       }
     }
+
+    img {
+
+      @media all and (orientation: landscape) {
+        height: 100vh;
+      }
+    }
+
+    // @include media(">=phone", "<desktop") {
+
+    //   img {
+    //     width: 100vw;
+    //   }
+
+    //   @media all and (orientation: landscape) {
+    //     img {
+    //       height: 100vh !important;
+    //     }
+
+    //     .carousel-caption {
+    //       position: fixed;
+    //       height: 100px !important;
+    //       bottom: 0px;
+    //       background-color: transparent !important;
+    //     }
+
+
+    //   }
+    // }
   }
   @include media(">=phone", "<desktop") {
-    @media all and (orientation: landscape) {
-      .carousel-control-prev,
-      .carousel-control-next {
-        bottom: 0 !important;
-      }
+    .carousel-control-prev,
+    .carousel-control-next {
+      display: none;
     }
   }
 }
@@ -148,21 +179,10 @@ section.gallery {
       box-sizing: border-box;
       position: relative;
       cursor: pointer;
-      opacity: 0.75;
-      transition: opacity .5s ease-out;
-      -moz-transition: opacity .5s ease-out;
-      -webkit-transition: opacity .5s ease-out;
-      -o-transition: opacity .5s ease-out;
-
-      max-width: 468px;
-      max-height: 468px;
-
+      // max-width: 468px;
+      // max-height: 468px;
 
       @media screen and (max-width: 1024px) {
-        opacity: 1;
-      }
-
-      &:hover {
         opacity: 1;
       }
 
@@ -198,25 +218,23 @@ section.gallery {
   .prev-item,
   .next-item {
     align-self: flex-end;
-    padding: 0 24px;
+    display: flex;
+    width: 60px;
+    height: 100vh;
+    align-items: flex-end;
+    justify-content: center;
     cursor: pointer;
-    padding-bottom: 90px;
+    padding-bottom: 15rem;
+
+    i {
+      font-size: 48px;
+      color: #FFF;
+    }
 
     &.hidden {
       opacity: 0;
       pointer-events: none;
     }
-  }
-
-  .prev-item {
-    width: 20px;
-    height: 80px;
-    margin-right: 16px;
-  }
-
-  .next-item {
-    width: 22px;
-    height: 82px;
   }
 }
 

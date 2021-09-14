@@ -1,57 +1,52 @@
 <div class="desktop">
-  <app-copyright [currentPage]="currentPage" [totalPages]="totalPages$"></app-copyright>
+  <app-copyright [currentPage]="currentPage" [totalPages]="totalPages$ | async"></app-copyright>
   <section class="gallery" *ngIf="selectedGalleryItem$ | async as selectedItem">
     <div
       class="prev-item"
       (click)="navigateToPage('PREV')"
-      [ngClass]="selectedItem.pages > 1 && convertToInt(currentPage) <= 1 ? 'hidden' : 'visible'">
-      <img src="assets/images/seta-esq.png" alt="">
+      [ngClass]="convertToInt(currentPage) === 1 ? 'hidden' : 'visible'">
+      <i class="icon icon-left"></i>
     </div>
     <div class="thumb-wrapper" [ngClass]="thumbType == '1' ? 'large' : 'medium'">
       <div *ngFor="let thumb of galleryImages$ | async; let _index = index" class="thumb" (click)="selectItem(thumb.id)">
-        <div class="thumb__loader" [attr.loaderId]="'loader-' + _index" #loaderElm>
-          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-        </div>
-        <img [src]="mountImageUrl(thumb)" (load)="closeLoader(loaderElm)" class="thumb__image" [alt]="thumbType" ondragstart="return false">
+        <img [src]="mountImageUrl(thumb)" class="thumb__image" [alt]="thumbType" ondragstart="return false">
       </div>
     </div>
     <div class="next-item" (click)="navigateToPage('NEXT')" [ngClass]="selectedItem.pages > 1 && currentPage !== selectedItem.pages.toString() ? 'visible' : 'hidden'">
-      <img src="assets/images/seta-dir.png" alt="">
+      <i class="icon icon-right"></i>
     </div>
   </section>
 </div>
-<div class="mobile" >
-  <div class="copyright-mobile">
-    Copyright &copy; 2021 - Sergio Righini - {{currentMobilePage}}/{{(allImages$ | async)?.length}}
-    <!-- Copyright &copy; {{currentYear}} - {{currentPage}}/{{totalPages | async}} -->
-  </div>
+<!-- mobile template -->
+<div class="mobile">
+  <div class="copyright-mobile">Copyright &copy; 2021 - Sergio Righini - {{currentMobilePage}}/{{(allImages$ | async)?.length}}</div>
   <carousel [isAnimated]="false" appCarouselSwipe [startFromIndex]="0" [interval]="0" (activeSlideChange)="activeSlideChanged($event)">
     <slide *ngFor="let image of allImages$ | async let _index = index">
-      <img [src]="getImageUrl(image)" [alt]="image.titulo" class="img-fluid">
-      <div class="carousel-caption d-block">
-        <div class="content">
-          <a
-            *ngIf="image.texto_link; else caption"
-            class="image-link"
-            [href]="image.link"
-            target="_blank">
-            <i class="icon icon-link"></i>
-            <span>{{image.texto_link}}</span>
-          </a>
-          <ng-template #caption>
-            <div class="text-wrap">
-              <i class="icon icon-info"></i>
-              <div class="text">
-                <p>{{image.primeira_linha}}</p>
-                <p>{{image.segunda_linha}}</p>
-                <p>{{image.terceira_linha}}</p>
-                <p>{{image.quarta_linha}}</p>
+      <div class="bg-wrapper" [ngStyle]="{'background-image': getImageUrl(image)}">
+        <div class="carousel-caption d-block">
+          <div class="content" [ngStyle]="{'color': image.whiteText ? '#FFF' : '#000'}">
+            <a
+              *ngIf="image.texto_link; else caption"
+              class="image-link"
+              [href]="image.link"
+              target="_blank">
+              <span>{{image.texto_link}}</span>
+            </a>
+            <ng-template #caption>
+              <div class="text-wrap">
+                <div class="text">
+                  <p>{{image.primeira_linha}}</p>
+                  <p>{{image.segunda_linha}}</p>
+                  <p>{{image.terceira_linha}}</p>
+                  <p>{{image.quarta_linha}}</p>
+                </div>
               </div>
-            </div>
-          </ng-template>
-          <div class="shadow"></div>
+            </ng-template>
+            <div class="shadow"></div>
+          </div>
         </div>
       </div>
+      <!-- <img [src]="getImageUrl(image)" [alt]="image.titulo"> -->
     </slide>
   </carousel>
 </div>

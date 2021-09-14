@@ -6,14 +6,15 @@ section.about-me {
   width: 100%;
   background-position: top right;
   background-repeat: no-repeat;
+  background-size: contain;
   overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
 
-  .content {
+  .content-wrapper {
     height: 100vh;
-    margin-left: auto;
-    overflow-y: auto;
-    padding-right: 65px;
-    width: 70%;
+    width: 610px;
+    margin-right: 36.5%;
   }
 
   .about-me__title {
@@ -31,11 +32,15 @@ section.about-me {
       font-weight: lighter;
     }
 
-    .content {
+    .content-wrapper {
       width: 100vw;
       height: calc(100vh);
+      margin: 0;
       padding: 64px 16px 16px 16px;
       overflow-y: auto;
+      .content {
+        width: 100vw !important;
+      }
       div {
         font-size: 14px;
         font-weight: 400;

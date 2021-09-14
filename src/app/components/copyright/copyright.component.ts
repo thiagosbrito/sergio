@@ -11,7 +11,7 @@ export class CopyrightComponent {
   currentYear: number | undefined;
 
   @Input() currentPage: string = '';
-  @Input() totalPages: Observable<number | undefined> = of(0);
+  @Input() totalPages: number | null = 0;
 
   constructor() {
     this.currentYear = new Date().getFullYear()

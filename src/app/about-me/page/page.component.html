@@ -1,6 +1,6 @@
 <section class="about-me" *ngIf="content$ | async as content" [style.background-image]="'url(http://sergiorighini.com/2016/img/aboutme/' + content.arquivo + ')'">
   <div class="content-wrapper">
-    <ng-scrollbar class="content">
+    <ng-scrollbar class="content" [visibility]="'hover'">
       <div [innerHTML]="content.about_pt"></div>
     </ng-scrollbar>
   </div>

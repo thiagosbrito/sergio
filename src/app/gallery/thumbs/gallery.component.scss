@@ -79,6 +79,10 @@ $spinner-size: 60px;
         bottom: 90px;
         right: 0;
         padding: 10px;
+
+        @media all and (orientation: landscape) {
+          bottom: 0
+        }
       }
     }
 

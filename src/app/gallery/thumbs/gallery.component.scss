@@ -58,6 +58,9 @@ $spinner-size: 60px;
           span {
             padding: 8px 16px;
           }
+          .text > p {
+            margin-bottom: 5px;
+          }
         }
       }
     }
@@ -88,28 +91,6 @@ $spinner-size: 60px;
         height: 100vh;
       }
     }
-
-    // @include media(">=phone", "<desktop") {
-
-    //   img {
-    //     width: 100vw;
-    //   }
-
-    //   @media all and (orientation: landscape) {
-    //     img {
-    //       height: 100vh !important;
-    //     }
-
-    //     .carousel-caption {
-    //       position: fixed;
-    //       height: 100px !important;
-    //       bottom: 0px;
-    //       background-color: transparent !important;
-    //     }
-
-
-    //   }
-    // }
   }
   @include media(">=phone", "<desktop") {
     .carousel-control-prev,
@@ -144,7 +125,7 @@ $spinner-size: 60px;
 }
 
 .copyright-mobile {
-  font-size: 13px;
+  font-size: 16px;
   color: #FFF;
   width: 100%;
   height: 19px;

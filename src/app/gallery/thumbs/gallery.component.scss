@@ -72,6 +72,9 @@ $spinner-size: 60px;
       background-position: top right;
       background-size: contain;
       background-repeat: no-repeat;
+      @media all and (orientation: landscape) {
+        background-position: top center;
+      }
 
       .carousel-caption {
         position: absolute;

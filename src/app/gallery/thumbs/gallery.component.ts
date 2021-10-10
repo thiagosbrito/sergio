@@ -1,11 +1,9 @@
-import { Component, ElementRef, Inject, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
 import { EMPTY, Observable, of } from 'rxjs';
 import { GalleryService } from 'src/app/services/gallery.service';
-import { IGalleryImage, IGalleryItem, IGalleryResponse } from '../../interfaces/gallery.interface';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { filter, map, switchMap, take, tap } from 'rxjs/operators';
+import { IGalleryImage, IGalleryResponse } from '../../interfaces/gallery.interface';
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -25,10 +23,9 @@ export class GalleryComponent implements OnInit {
   parentId!: string;
   childId!: string;
   thumbType!: string;
+
   currentPage!: string;
-
   currentMobilePage: number = 1;
-
   totalPages$: Observable<number> = of(0);
 
   allImages$!: Observable<any[]>
@@ -38,12 +35,13 @@ export class GalleryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private galleryService$: GalleryService,
-    private ngxLoaderService: NgxUiLoaderService,
-    private store: Store,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
+
+    console.log('Init eh brasil')
 
     this.getAllImages();
     this.getImagesFromGallery();
@@ -113,6 +111,7 @@ export class GalleryComponent implements OnInit {
 
   activeSlideChanged(event: any) {
     this.currentMobilePage = event + 1;
+    this.cdr.detectChanges();
   }
 
   private updateParamsForQuery() {

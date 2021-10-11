@@ -37,19 +37,25 @@ export class GalleryComponent implements OnInit {
     private galleryService$: GalleryService,
     private router: Router,
     private cdr: ChangeDetectorRef
-  ) { }
+  ) {
+
+  }
 
   ngOnInit(): void {
 
-    console.log('Init eh brasil')
-
-    this.getAllImages();
+    console.info('component inicou');
+    if (this.isMobile) {
+      this.getAllImages();
+    }
     this.getImagesFromGallery();
 
     this.router.events.pipe(
       filter((e: any) => e instanceof NavigationEnd)
     ).subscribe(() => {
-      this.getAllImages();
+      console.log('component trocou a rota');
+      if (this.isMobile) {
+        this.getAllImages();
+      }
       this.getImagesFromGallery();
     });
   }
@@ -60,15 +66,6 @@ export class GalleryComponent implements OnInit {
 
   getImageUrl(image: IGalleryImage): string {
     return `url(http://sergiorighini.com/2016/img/${this.parentId}/mobile/${image.img_mobile})`;
-  }
-
-  closeLoader(loader: any) {
-    let loaderId = loader.getAttribute('loaderId');
-    this.loaderElm?.map((element) => {
-      if (element.nativeElement.attributes.loaderId && element.nativeElement.attributes.loaderId.value === loaderId) {
-        element.nativeElement.classList.add('hidden');
-      }
-    })
   }
 
   getImagesFromGallery() {
@@ -109,7 +106,11 @@ export class GalleryComponent implements OnInit {
     else { return false }
   }
 
-  activeSlideChanged(event: any) {
+  activeSlideChanged(event: number) {
+    if (typeof event === 'undefined') {
+      event = 0;
+    }
+    console.log(typeof event);
     this.currentMobilePage = event + 1;
     this.cdr.detectChanges();
   }

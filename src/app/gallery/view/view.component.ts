@@ -3,10 +3,8 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { EMPTY, Observable, of } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { IGalleryImage, IGalleryResponse } from 'src/app/interfaces/gallery.interface';
+import { IGalleryImage } from 'src/app/interfaces/gallery.interface';
 import { GalleryService } from 'src/app/services/gallery.service';
-// import { GalleryItem, imagesFromSelectedItem, SelectedGalleryItem, selectGalleryCategory, selectGalleryPic } from '../store';
-// import * as fromGallery from './../store/gallery.actions';
 
 @Component({
   selector: 'app-view',
@@ -42,17 +40,12 @@ export class ViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSelectedImage();
-    this.router.events.pipe(
-      filter((e: any) => e instanceof NavigationEnd)
-    ).subscribe(() => {
-      this.getSelectedImage();
-    });
   }
 
   getSelectedImage() {
     this.galleryService.getGalleryImages(this.parentId, this.childId, '0').subscribe((response) => {
       this.allImages = response.images;
-      response.images.filter((image) => {
+      this.allImages.filter((image) => {
         if (image.id === parseInt(this.itemId as string)) {
           this.transformImageObject(image);
         }
@@ -63,17 +56,16 @@ export class ViewComponent implements OnInit {
   getCurrentImageIndex() {}
 
   getImageUrl(urlString: string | undefined): string {
-    // console.log('getImageUrl called once');
-    // const scope = this;
-    // setTimeout(() => {
-    //   scope.closeLoader();
-    // }, 1500);
     return `url(http://sergiorighini.com/2016/img/${this.parentId}/${urlString})`;
   }
 
   navigateTo(itemId: number | undefined) {
     this.itemId = itemId?.toString();
-    // this.showLoader();
+    this.allImages.filter((image) => {
+      if (image.id === parseInt(this.itemId as string)) {
+        this.transformImageObject(image);
+      }
+    })
     this.router.navigate([`gallery/${this.parentId}/${this.childId}/${this.thumbType ? this.thumbType : '0'}/view/${itemId}`])
   }
 

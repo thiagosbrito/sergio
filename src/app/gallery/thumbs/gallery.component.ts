@@ -48,15 +48,20 @@ export class GalleryComponent implements OnInit {
       this.getAllImages();
     }
     this.getImagesFromGallery();
+  }
 
+  ngAfterViewInit() {
     this.router.events.pipe(
       filter((e: any) => e instanceof NavigationEnd)
-    ).subscribe(() => {
-      console.log('component trocou a rota');
-      if (this.isMobile) {
-        this.getAllImages();
+    ).subscribe((data) => {
+      console.log(data);
+      if (!data.urlAfterRedirects.includes('view')) {
+        console.log('component trocou a rota');
+        if (this.isMobile) {
+          this.getAllImages();
+        }
+        this.getImagesFromGallery();
       }
-      this.getImagesFromGallery();
     });
   }
 
